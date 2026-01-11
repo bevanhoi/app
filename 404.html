@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>404 | Page Not Found</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --nord0: #2E3440;
+            --nord1: #3B4252;
+            --nord2: #434C5E;
+            --nord3: #4C566A;
+
+            --nord4: #D8DEE9;
+            --nord5: #E5E9F0;
+            --nord6: #ECEFF4;
+
+            --nord8: #88C0D0;
+            --nord9: #81A1C1;
+            --nord10: #5E81AC;
+            --nord11: #BF616A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(145deg, var(--nord0), var(--nord1));
+            color: var(--nord4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px;
+            background: rgba(59, 66, 82, 0.7);
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            max-width: 420px;
+        }
+
+        h1 {
+            font-size: 96px;
+            color: var(--nord11);
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 22px;
+            color: var(--nord6);
+            margin-bottom: 16px;
+        }
+
+        p {
+            font-size: 15px;
+            color: var(--nord4);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        a.button {
+            display: inline-block;
+            padding: 12px 28px;
+            background: var(--nord10);
+            color: var(--nord6);
+            text-decoration: none;
+            border-radius: 999px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        a.button:hover {
+            background: var(--nord9);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(94,129,172,0.5);
+        }
+
+        .icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            color: var(--nord8);
+        }
+
+        footer {
+            margin-top: 24px;
+            font-size: 12px;
+            color: var(--nord3);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="icon">❄️</div>
+        <h1>404</h1>
+        <h2>Không tìm thấy trang</h2>
+        <p>
+            Trang bạn đang tìm không tồn tại hoặc đã bị di chuyển.<br>
+            Có thể liên kết bị sai hoặc đã bị xóa.
+        </p>
+        <a href="/" class="button">Quay về trang chủ</a>
+        <footer>
+            Nord Theme · HTML5
+        </footer>
+    </div>
+
+</body>
+</html>
