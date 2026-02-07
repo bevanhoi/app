@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Học Tiếng Anh - Giao diện màu cam</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #fff9f0;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #ff8c00, #ff6b00);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(255, 107, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo i {
+            font-size: 2.5rem;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: #ffeb3b;
+        }
+        
+        /* Navigation */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 8px 16px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        nav a.active {
+            background-color: #ffeb3b;
+            color: #ff6b00;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            background-color: #fff4e6;
+            border-bottom: 1px solid #ffe0b2;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 40px;
+        }
+        
+        .hero-text h2 {
+            font-size: 2.8rem;
+            color: #ff6b00;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 107, 0, 0.15);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #ff6b00;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #777;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(255, 107, 0, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 107, 0, 0.15);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background-color: #fff3e0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        
+        .feature-icon i {
+            font-size: 2.5rem;
+            color: #ff6b00;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            color: #ff6b00;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .feature-link {
+            display: inline-block;
+            background-color: #ff6b00;
+            color: white;
+            text-decoration: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-link:hover {
+            background-color: #ff8c00;
+            transform: scale(1.05);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.5rem;
+            color: #ff8c00;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section p {
+            color: #bbb;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #ff8c00;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                gap: 10px;
+            }
+            
+            nav a {
+                font-size: 1rem;
+                padding: 6px 12px;
+            }
+            
+            .hero-content {
+                flex-direction: column;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+            
+            .hero-text h2 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .feature-card, .hero-text, .hero-image {
+            animation: fadeIn 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-language"></i>
+                    <h1>Học <span>Tiếng Anh</span></h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="/" class="active"><i class="fas fa-home"></i> Trang chủ</a></li>
+                        <li><a href="/tu-vung.html"><i class="fas fa-book"></i> Từ vựng</a></li>
+                        <li><a href="/tieng-anh.html"><i class="fas fa-globe-americas"></i> Tiếng Anh</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2>Nâng cao kỹ năng Tiếng Anh của bạn</h2>
+                    <p>Khám phá các bài học từ vựng, ngữ pháp và kỹ năng giao tiếp tiếng Anh với phương pháp học tập hiệu quả và thú vị.</p>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                        <a href="/tu-vung.html" class="feature-link">Học từ vựng</a>
+                        <a href="/tieng-anh.html" class="feature-link" style="background-color: #333; color: white;">Khóa học tiếng Anh</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Học tiếng Anh">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Khám phá các khóa học</h2>
+                <p>Chúng tôi cung cấp các khóa học tiếng Anh toàn diện giúp bạn nhanh chóng cải thiện kỹ năng ngôn ngữ</p>
+            </div>
+            
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>Từ vựng tiếng Anh</h3>
+                    <p>Mở rộng vốn từ vựng của bạn với hàng nghìn từ và cụm từ thông dụng, được phân loại theo chủ đề và trình độ.</p>
+                    <a href="/tu-vung.html" class="feature-link">Khám phá ngay</a>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Giao tiếp tiếng Anh</h3>
+                    <p>Học các kỹ năng giao tiếp thực tế với các tình huống hội thoại hàng ngày và chuyên nghiệp.</p>
+                    <a href="/tieng-anh.html" class="feature-link">Bắt đầu học</a>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headphones-alt"></i>
+                    </div>
+                    <h3>Luyện nghe & phát âm</h3>
+                    <p>Cải thiện kỹ năng nghe và phát âm với các bài luyện tập tương tác và công nghệ nhận diện giọng nói.</p>
+                    <a href="/tieng-anh.html" class="feature-link">Luyện tập ngay</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Học Tiếng Anh</h3>
+                    <p>Nền tảng học tiếng Anh trực tuyến hàng đầu với phương pháp học tập hiệu quả, cá nhân hóa và thú vị.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Liên kết nhanh</h3>
+                    <ul class="footer-links">
+                        <li><a href="/">Trang chủ</a></li>
+                        <li><a href="/tu-vung.html">Từ vựng tiếng Anh</a></li>
+                        <li><a href="/tieng-anh.html">Khóa học tiếng Anh</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Liên hệ</h3>
+                    <p>Email: contact@hoctienganh.com</p>
+                    <p>Điện thoại: (0123) 456-789</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Học Tiếng Anh. Tất cả các quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Thêm hiệu ứng tương tác cho các liên kết
+        document.addEventListener('DOMContentLoaded', function() {
+            // Thêm hiệu ứng hover cho tất cả các liên kết điều hướng
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px)';
+                });
+                
+                link.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Thêm hiệu ứng cho các card
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-12px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Thêm hiệu ứng click cho các liên kết chính
+            const mainLinks = document.querySelectorAll('.feature-link');
+            mainLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Tạo hiệu ứng click
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1.05)';
+                        
+                        // Chuyển hướng sau hiệu ứng
+                        setTimeout(() => {
+                            window.location.href = this.getAttribute('href');
+                        }, 150);
+                    }, 100);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

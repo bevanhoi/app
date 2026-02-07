@@ -2,475 +2,917 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Học Tiếng Anh - Giao diện màu cam</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Website Học Tiếng Anh</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Reset và base styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background-color: #fff9f0;
-            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            padding: 0 15px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
         /* Header */
-        header {
-            background: linear-gradient(135deg, #ff8c00, #ff6b00);
+        .header {
+            background: linear-gradient(135deg, #4a6fa5, #166088);
             color: white;
-            padding: 1.5rem 0;
-            box-shadow: 0 4px 12px rgba(255, 107, 0, 0.2);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
             z-index: 100;
         }
         
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .header-content {
+        .header .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 15px;
         }
         
         .logo {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
         }
         
         .logo i {
-            font-size: 2.5rem;
-        }
-        
-        .logo h1 {
             font-size: 1.8rem;
-            font-weight: 700;
         }
         
-        .logo span {
-            color: #ffeb3b;
-        }
-        
-        /* Navigation */
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-        
-        nav a {
+        .menu-toggle {
+            background: none;
+            border: none;
             color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            padding: 8px 16px;
-            border-radius: 30px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        nav a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-        
-        nav a.active {
-            background-color: #ffeb3b;
-            color: #ff6b00;
-        }
-        
-        /* Hero Section */
-        .hero {
-            padding: 80px 0;
-            background-color: #fff4e6;
-            border-bottom: 1px solid #ffe0b2;
-        }
-        
-        .hero-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
-        
-        .hero-text {
-            flex: 1;
-            min-width: 300px;
-            padding-right: 40px;
-        }
-        
-        .hero-text h2 {
-            font-size: 2.8rem;
-            color: #ff6b00;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-        
-        .hero-text p {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 30px;
-        }
-        
-        .hero-image {
-            flex: 1;
-            min-width: 300px;
-            text-align: center;
-        }
-        
-        .hero-image img {
-            max-width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(255, 107, 0, 0.15);
-        }
-        
-        /* Features Section */
-        .features {
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: #ff6b00;
-            margin-bottom: 15px;
-        }
-        
-        .section-title p {
-            color: #777;
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .feature-card {
-            background-color: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(255, 107, 0, 0.1);
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(255, 107, 0, 0.15);
-        }
-        
-        .feature-icon {
-            width: 80px;
-            height: 80px;
-            background-color: #fff3e0;
-            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
         }
         
-        .feature-icon i {
-            font-size: 2.5rem;
-            color: #ff6b00;
+        .menu-toggle:hover {
+            background-color: rgba(255,255,255,0.1);
         }
         
-        .feature-card h3 {
-            font-size: 1.5rem;
-            color: #ff6b00;
-            margin-bottom: 15px;
+        /* Navigation Menu */
+        .nav-menu {
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 70px;
+            left: -100%;
+            width: 80%;
+            height: calc(100vh - 70px);
+            z-index: 99;
+            transition: left 0.3s ease;
+            overflow-y: auto;
         }
         
-        .feature-card p {
-            color: #666;
-            margin-bottom: 20px;
+        .nav-menu.active {
+            left: 0;
         }
         
-        .feature-link {
-            display: inline-block;
-            background-color: #ff6b00;
-            color: white;
-            text-decoration: none;
-            padding: 10px 25px;
-            border-radius: 30px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .feature-link:hover {
-            background-color: #ff8c00;
-            transform: scale(1.05);
-        }
-        
-        /* Footer */
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 50px 0 20px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-section h3 {
-            font-size: 1.5rem;
-            color: #ff8c00;
-            margin-bottom: 20px;
-        }
-        
-        .footer-section p {
-            color: #bbb;
-            margin-bottom: 20px;
-        }
-        
-        .footer-links {
+        .nav-menu ul {
             list-style: none;
+            padding: 20px 0;
         }
         
-        .footer-links li {
+        .nav-menu li {
+            border-bottom: 1px solid #eee;
+        }
+        
+        .nav-menu a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px 20px;
+            color: #333;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+        
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            background-color: #f0f7ff;
+            color: #166088;
+        }
+        
+        .nav-menu i {
+            width: 24px;
+            text-align: center;
+        }
+        
+        /* Main Content */
+        .main-content {
+            min-height: calc(100vh - 70px);
+            padding: 20px 0;
+        }
+        
+        /* Loading spinner */
+        .loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            color: #4a6fa5;
+            font-size: 1.2rem;
+        }
+        
+        .loading i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        /* Page content styles */
+        .page-content {
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .page-header {
+            background: linear-gradient(135deg, #4a6fa5, #166088);
+            color: white;
+            padding: 25px 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .page-header h1 {
+            font-size: 1.8rem;
             margin-bottom: 10px;
         }
         
-        .footer-links a {
-            color: #ddd;
+        .page-header p {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .card h2 {
+            color: #166088;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f7ff;
+            font-size: 1.5rem;
+        }
+        
+        .card p {
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+        
+        .card ul {
+            padding-left: 20px;
+            margin: 15px 0;
+        }
+        
+        .card li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #4a6fa5, #166088);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
             text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-links a:hover {
-            color: #ff8c00;
-        }
-        
-        .copyright {
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(22, 96, 136, 0.2);
             text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #444;
-            color: #aaa;
+            margin-top: 10px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(22, 96, 136, 0.3);
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        /* Vocabulary item */
+        .vocab-item {
+            background: #f9fbff;
+            border-left: 4px solid #4a6fa5;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .vocab-item h3 {
+            color: #166088;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .vocab-item .word {
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+        
+        .vocab-item .meaning {
+            color: #333;
+            font-style: italic;
+            margin: 10px 0;
+            padding-left: 10px;
+            border-left: 2px solid #ddd;
+        }
+        
+        .vocab-item .example {
+            color: #666;
+            font-size: 0.95rem;
+            background: #f0f7ff;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+            margin-top: 40px;
+        }
+        
+        .footer p {
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+        
+        /* Overlay for mobile menu */
+        .overlay {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 70px);
+            background: rgba(0,0,0,0.5);
+            z-index: 98;
+            display: none;
+        }
+        
+        .overlay.active {
+            display: block;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            background: #f0f7ff;
+            padding: 12px 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
             font-size: 0.9rem;
         }
         
+        .breadcrumb a {
+            color: #4a6fa5;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .breadcrumb i {
+            margin: 0 8px;
+            font-size: 0.8rem;
+        }
+        
         /* Responsive */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 20px;
+        @media (min-width: 768px) {
+            .menu-toggle {
+                display: none;
             }
             
-            nav ul {
-                gap: 10px;
+            .nav-menu {
+                position: static;
+                width: 100%;
+                height: auto;
+                background: none;
+                box-shadow: none;
+                top: auto;
+                left: auto;
             }
             
-            nav a {
-                font-size: 1rem;
-                padding: 6px 12px;
+            .nav-menu ul {
+                display: flex;
+                justify-content: center;
+                padding: 0;
             }
             
-            .hero-content {
-                flex-direction: column;
+            .nav-menu li {
+                border: none;
             }
             
-            .hero-text {
-                padding-right: 0;
-                margin-bottom: 40px;
+            .nav-menu a {
+                color: rgba(255,255,255,0.9);
+                padding: 10px 20px;
+                border-radius: 5px;
+                margin: 0 5px;
             }
             
-            .hero-text h2 {
+            .nav-menu a:hover,
+            .nav-menu a.active {
+                background-color: rgba(255,255,255,0.1);
+                color: white;
+            }
+            
+            .overlay {
+                display: none !important;
+            }
+            
+            .page-header {
+                padding: 30px;
+            }
+            
+            .page-header h1 {
                 font-size: 2.2rem;
             }
         }
         
-        /* Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .feature-card, .hero-text, .hero-image {
-            animation: fadeIn 0.8s ease-out;
+        @media (min-width: 992px) {
+            .cards-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header>
+    <header class="header">
         <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <i class="fas fa-language"></i>
-                    <h1>Học <span>Tiếng Anh</span></h1>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="/" class="active"><i class="fas fa-home"></i> Trang chủ</a></li>
-                        <li><a href="/tu-vung.html"><i class="fas fa-book"></i> Từ vựng</a></li>
-                        <li><a href="/tieng-anh.html"><i class="fas fa-globe-americas"></i> Tiếng Anh</a></li>
-                    </ul>
-                </nav>
+            <div class="logo">
+                <i class="fas fa-language"></i>
+                <span>Learn English</span>
             </div>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h2>Nâng cao kỹ năng Tiếng Anh của bạn</h2>
-                    <p>Khám phá các bài học từ vựng, ngữ pháp và kỹ năng giao tiếp tiếng Anh với phương pháp học tập hiệu quả và thú vị.</p>
-                    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                        <a href="/tu-vung.html" class="feature-link">Học từ vựng</a>
-                        <a href="/tieng-anh.html" class="feature-link" style="background-color: #333; color: white;">Khóa học tiếng Anh</a>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Học tiếng Anh">
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Navigation Menu -->
+    <nav class="nav-menu" id="navMenu">
+        <ul>
+            <li><a href="/" data-link><i class="fas fa-home"></i> Trang chủ</a></li>
+            <li><a href="/tieng-anh.html" data-link><i class="fas fa-book"></i> Tiếng Anh</a></li>
+            <li><a href="/tu-vung.html" data-link><i class="fas fa-book-open"></i> Từ vựng</a></li>
+            <li><a href="/luyen-nghe.html" data-link><i class="fas fa-headphones"></i> Luyện nghe</a></li>
+            <li><a href="/kiem-tra.html" data-link><i class="fas fa-clipboard-check"></i> Kiểm tra</a></li>
+        </ul>
+    </nav>
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <div class="section-title">
-                <h2>Khám phá các khóa học</h2>
-                <p>Chúng tôi cung cấp các khóa học tiếng Anh toàn diện giúp bạn nhanh chóng cải thiện kỹ năng ngôn ngữ</p>
-            </div>
-            
-            <div class="features-grid">
-                <!-- Feature 1 -->
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-book-open"></i>
-                    </div>
-                    <h3>Từ vựng tiếng Anh</h3>
-                    <p>Mở rộng vốn từ vựng của bạn với hàng nghìn từ và cụm từ thông dụng, được phân loại theo chủ đề và trình độ.</p>
-                    <a href="/tu-vung.html" class="feature-link">Khám phá ngay</a>
-                </div>
-                
-                <!-- Feature 2 -->
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-comments"></i>
-                    </div>
-                    <h3>Giao tiếp tiếng Anh</h3>
-                    <p>Học các kỹ năng giao tiếp thực tế với các tình huống hội thoại hàng ngày và chuyên nghiệp.</p>
-                    <a href="/tieng-anh.html" class="feature-link">Bắt đầu học</a>
-                </div>
-                
-                <!-- Feature 3 -->
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-headphones-alt"></i>
-                    </div>
-                    <h3>Luyện nghe & phát âm</h3>
-                    <p>Cải thiện kỹ năng nghe và phát âm với các bài luyện tập tương tác và công nghệ nhận diện giọng nói.</p>
-                    <a href="/tieng-anh.html" class="feature-link">Luyện tập ngay</a>
-                </div>
-            </div>
+    <!-- Overlay for mobile menu -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Nội dung sẽ được load động vào đây -->
+        <div class="loading">
+            <i class="fas fa-spinner fa-spin"></i>
+            Đang tải trang...
         </div>
-    </section>
+    </main>
 
     <!-- Footer -->
-    <footer>
+    <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Học Tiếng Anh</h3>
-                    <p>Nền tảng học tiếng Anh trực tuyến hàng đầu với phương pháp học tập hiệu quả, cá nhân hóa và thú vị.</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Liên kết nhanh</h3>
-                    <ul class="footer-links">
-                        <li><a href="/">Trang chủ</a></li>
-                        <li><a href="/tu-vung.html">Từ vựng tiếng Anh</a></li>
-                        <li><a href="/tieng-anh.html">Khóa học tiếng Anh</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Liên hệ</h3>
-                    <p>Email: contact@hoctienganh.com</p>
-                    <p>Điện thoại: (0123) 456-789</p>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 Học Tiếng Anh. Tất cả các quyền được bảo lưu.</p>
-            </div>
+            <p>© 2023 Website Học Tiếng Anh. Tất cả các quyền được bảo lưu.</p>
+            <p>Học mỗi ngày, tiến bộ mỗi ngày!</p>
         </div>
     </footer>
 
     <script>
-        // Thêm hiệu ứng tương tác cho các liên kết
-        document.addEventListener('DOMContentLoaded', function() {
-            // Thêm hiệu ứng hover cho tất cả các liên kết điều hướng
-            const navLinks = document.querySelectorAll('nav a');
-            navLinks.forEach(link => {
-                link.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-3px)';
-                });
-                
-                link.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                });
-            });
-            
-            // Thêm hiệu ứng cho các card
-            const featureCards = document.querySelectorAll('.feature-card');
-            featureCards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-12px)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                });
-            });
-            
-            // Thêm hiệu ứng click cho các liên kết chính
-            const mainLinks = document.querySelectorAll('.feature-link');
-            mainLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Tạo hiệu ứng click
-                    this.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                        this.style.transform = 'scale(1.05)';
+        // ========== CẤU TRÚC DỮ LIỆU CHO CÁC TRANG ==========
+        const pages = {
+            "/": {
+                title: "Trang chủ - Học Tiếng Anh",
+                content: `
+                    <div class="page-content">
+                        <div class="page-header">
+                            <h1><i class="fas fa-home"></i> Chào mừng đến với Website Học Tiếng Anh</h1>
+                            <p>Nơi tốt nhất để cải thiện kỹ năng tiếng Anh của bạn mỗi ngày</p>
+                        </div>
                         
-                        // Chuyển hướng sau hiệu ứng
-                        setTimeout(() => {
-                            window.location.href = this.getAttribute('href');
-                        }, 150);
-                    }, 100);
+                        <div class="breadcrumb">
+                            <a href="/" data-link><i class="fas fa-home"></i> Trang chủ</a>
+                        </div>
+                        
+                        <div class="cards-grid">
+                            <div class="card">
+                                <h2><i class="fas fa-book text-primary"></i> Giới thiệu</h2>
+                                <p>Website được thiết kế đặc biệt cho người Việt học tiếng Anh, với phương pháp học tập hiệu quả và nội dung phong phú.</p>
+                                <p>Chúng tôi cung cấp các bài học từ cơ bản đến nâng cao, giúp bạn phát triển toàn diện 4 kỹ năng: Nghe, Nói, Đọc, Viết.</p>
+                                <a href="/tieng-anh.html" data-link class="btn"><i class="fas fa-arrow-right"></i> Bắt đầu học</a>
+                            </div>
+                            
+                            <div class="card">
+                                <h2><i class="fas fa-chart-line text-primary"></i> Lộ trình học</h2>
+                                <ul>
+                                    <li><strong>Cơ bản:</strong> Ngữ pháp, từ vựng căn bản</li>
+                                    <li><strong>Trung cấp:</strong> Giao tiếp thông dụng</li>
+                                    <li><strong>Nâng cao:</strong> Chuyên sâu theo chủ đề</li>
+                                    <li><strong>Luyện thi:</strong> TOEIC, IELTS, TOEFL</li>
+                                </ul>
+                                <p>Học theo lộ trình bài bản giúp bạn tiến bộ nhanh chóng và hiệu quả.</p>
+                            </div>
+                            
+                            <div class="card">
+                                <h2><i class="fas fa-award text-primary"></i> Tính năng nổi bật</h2>
+                                <ul>
+                                    <li>Hơn 1000 từ vựng thông dụng</li>
+                                    <li>500+ bài học ngữ pháp</li>
+                                    <li>300 bài luyện nghe</li>
+                                    <li>Kiểm tra đánh giá định kỳ</li>
+                                    <li>Theo dõi tiến độ học tập</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="card">
+                                <h2><i class="fas fa-lightbulb text-primary"></i> Mẹo học hiệu quả</h2>
+                                <p>1. Học đều đặn mỗi ngày 30 phút</p>
+                                <p>2. Ôn tập từ vựng thường xuyên</p>
+                                <p>3. Thực hành giao tiếp nhiều nhất có thể</p>
+                                <p>4. Xem phim, nghe nhạc bằng tiếng Anh</p>
+                                <a href="/tu-vung.html" data-link class="btn"><i class="fas fa-book-open"></i> Học từ vựng ngay</a>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            
+            "/tieng-anh.html": {
+                title: "Học Tiếng Anh",
+                content: `
+                    <div class="page-content">
+                        <div class="page-header">
+                            <h1><i class="fas fa-book"></i> Học Tiếng Anh</h1>
+                            <p>Các bài học tiếng Anh được phân loại theo cấp độ và chủ đề</p>
+                        </div>
+                        
+                        <div class="breadcrumb">
+                            <a href="/" data-link><i class="fas fa-home"></i> Trang chủ</a>
+                            <i class="fas fa-chevron-right"></i>
+                            <span>Tiếng Anh</span>
+                        </div>
+                        
+                        <div class="card">
+                            <h2><i class="fas fa-graduation-cap"></i> Ngữ pháp cơ bản</h2>
+                            <p>Các cấu trúc ngữ pháp quan trọng cho người mới bắt đầu:</p>
+                            <ul>
+                                <li>Thì hiện tại đơn (Present Simple)</li>
+                                <li>Thì hiện tại tiếp diễn (Present Continuous)</li>
+                                <li>Thì quá khứ đơn (Past Simple)</li>
+                                <li>Thì tương lai đơn (Future Simple)</li>
+                                <li>Câu điều kiện loại 1 (First Conditional)</li>
+                            </ul>
+                            <button class="btn" onclick="alert('Bắt đầu bài học ngữ pháp!')">
+                                <i class="fas fa-play-circle"></i> Bắt đầu học
+                            </button>
+                        </div>
+                        
+                        <div class="card">
+                            <h2><i class="fas fa-comments"></i> Giao tiếp hàng ngày</h2>
+                            <p>Các tình huống giao tiếp thông dụng trong cuộc sống:</p>
+                            <div class="vocab-item">
+                                <h3><span class="word">Chào hỏi</span></h3>
+                                <p class="meaning">Cách chào hỏi trong các ngữ cảnh khác nhau</p>
+                                <div class="example">
+                                    <p><strong>Ví dụ:</strong> "Hello, how are you?" - Xin chào, bạn có khỏe không?</p>
+                                    <p><strong>Ví dụ:</strong> "Good morning, nice to meet you!" - Chào buổi sáng, rất vui được gặp bạn!</p>
+                                </div>
+                            </div>
+                            <div class="vocab-item">
+                                <h3><span class="word">Mua sắm</span></h3>
+                                <p class="meaning">Các mẫu câu khi đi mua sắm</p>
+                                <div class="example">
+                                    <p><strong>Ví dụ:</strong> "How much is this?" - Cái này giá bao nhiêu?</p>
+                                    <p><strong>Ví dụ:</strong> "Do you have this in a different size?" - Bạn có cái này cỡ khác không?</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <h2><i class="fas fa-headphones-alt"></i> Luyện nghe theo chủ đề</h2>
+                            <p>Cải thiện kỹ năng nghe với các bài luyện tập đa dạng:</p>
+                            <ul>
+                                <li>Chủ đề: Du lịch (Travel)</li>
+                                <li>Chủ đề: Công việc (Work)</li>
+                                <li>Chủ đề: Giải trí (Entertainment)</li>
+                                <li>Chủ đề: Ẩm thực (Food)</li>
+                            </ul>
+                            <a href="/luyen-nghe.html" data-link class="btn">
+                                <i class="fas fa-headphones"></i> Luyện nghe ngay
+                            </a>
+                        </div>
+                    </div>
+                `
+            },
+            
+            "/tu-vung.html": {
+                title: "Học Từ Vựng",
+                content: `
+                    <div class="page-content">
+                        <div class="page-header">
+                            <h1><i class="fas fa-book-open"></i> Học Từ Vựng</h1>
+                            <p>Mở rộng vốn từ vựng với các chủ đề thông dụng</p>
+                        </div>
+                        
+                        <div class="breadcrumb">
+                            <a href="/" data-link><i class="fas fa-home"></i> Trang chủ</a>
+                            <i class="fas fa-chevron-right"></i>
+                            <span>Từ vựng</span>
+                        </div>
+                        
+                        <div class="card">
+                            <h2><i class="fas fa-home"></i> Từ vựng gia đình</h2>
+                            <div class="vocab-item">
+                                <h3><span class="word">Family</span> <span class="pronunciation">/ˈfæm.ə.li/</span></h3>
+                                <p class="meaning">Gia đình</p>
+                                <div class="example">
+                                    <p><strong>Ví dụ:</strong> "I have a big family with 5 members." - Tôi có một gia đình lớn với 5 thành viên.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="vocab-item">
+                                <h3><span class="word">Parents</span> <span class="pronunciation">/ˈpeə.rənts/</span></h3>
+                                <p class="meaning">Bố mẹ</p>
+                                <div class="example">
+                                    <p><strong>Ví dụ:</strong> "My parents are teachers." - Bố mẹ tôi là giáo viên.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="vocab-item">
+                                <h3><span class="word">Sibling</span> <span class="pronunciation">/ˈsɪb.lɪŋ/</span></h3>
+                                <p class="meaning">Anh chị em ruột</p>
+                                <div class="example">
+                                    <p><strong>Ví dụ:</strong> "I have two siblings." - Tôi có hai anh chị em.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <h2><i class="fas fa-utensils"></i> Từ vựng đồ ăn</h2>
+                            <div class="vocab-item">
+                                <h3><span class="word">Delicious</span> <span class="pronunciation">/dɪˈlɪʃ.əs/</span></h3>
+                                <p class="meaning">Ngon</p>
+                                <div class="example">
+                                    <p><strong>Ví dụ:</strong> "This cake is delicious!" - Cái bánh này ngon quá!</p>
+                                </div>
+                            </div>
+                            
+                            <div class="vocab-item">
+                                <h3><span class="word">Beverage</span> <span class="pronunciation">/ˈbev.ər.ɪdʒ/</span></h3>
+                                <p class="meaning">Đồ uống</p>
+                                <div class="example">
+                                    <p><strong>Ví dụ:</strong> "What beverage would you like?" - Bạn muốn uống gì?</p>
+                                </div>
+                            </div>
+                            
+                            <div class="vocab-item">
+                                <h3><span class="word">Appetizer</span> <span class="pronunciation">/ˈæp.ə.taɪ.zər/</span></h3>
+                                <p class="meaning">Món khai vị</p>
+                                <div class="example">
+                                    <p><strong>Ví dụ:</strong> "We ordered spring rolls as an appetizer." - Chúng tôi gọi nem làm món khai vị.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <h2><i class="fas fa-briefcase"></i> Từ vựng công việc</h2>
+                            <div class="vocab-item">
+                                <h3><span class="word">Colleague</span> <span class="pronunciation">/ˈkɒl.iːɡ/</span></h3>
+                                <p class="meaning">Đồng nghiệp</p>
+                                <div class="example">
+                                    <p><strong>Ví dụ:</strong> "My colleagues are very friendly." - Các đồng nghiệp của tôi rất thân thiện.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="vocab-item">
+                                <h3><span class="word">Deadline</span> <span class="pronunciation">/ˈded.laɪn/</span></h3>
+                                <p class="meaning">Hạn chót</p>
+                                <div class="example">
+                                    <p><strong>Ví dụ:</strong> "The deadline for this project is Friday." - Hạn chót cho dự án này là thứ Sáu.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="vocab-item">
+                                <h3><span class="word">Promotion</span> <span class="pronunciation">/prəˈməʊ.ʃən/</span></h3>
+                                <p class="meaning">Thăng chức</p>
+                                <div class="example">
+                                    <p><strong>Ví dụ:</strong> "She got a promotion last month." - Cô ấy được thăng chức tháng trước.</p>
+                                </div>
+                            </div>
+                            
+                            <button class="btn" onclick="showMoreVocabulary()">
+                                <i class="fas fa-plus-circle"></i> Xem thêm từ vựng
+                            </button>
+                        </div>
+                    </div>
+                `
+            },
+            
+            "/luyen-nghe.html": {
+                title: "Luyện Nghe Tiếng Anh",
+                content: `
+                    <div class="page-content">
+                        <div class="page-header">
+                            <h1><i class="fas fa-headphones"></i> Luyện Nghe Tiếng Anh</h1>
+                            <p>Cải thiện kỹ năng nghe với các bài tập đa dạng</p>
+                        </div>
+                        
+                        <div class="breadcrumb">
+                            <a href="/" data-link><i class="fas fa-home"></i> Trang chủ</a>
+                            <i class="fas fa-chevron-right"></i>
+                            <span>Luyện nghe</span>
+                        </div>
+                        
+                        <div class="card">
+                            <h2><i class="fas fa-play-circle"></i> Bài nghe cơ bản</h2>
+                            <p>Dành cho người mới bắt đầu, tốc độ chậm, từ vựng đơn giản</p>
+                            <div class="audio-player">
+                                <p><strong>Bài 1: Chào hỏi cơ bản</strong></p>
+                                <button class="btn" onclick="playAudio('greeting')">
+                                    <i class="fas fa-play"></i> Phát bài nghe
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <h2><i class="fas fa-running"></i> Bài nghe trung cấp</h2>
+                            <p>Tốc độ vừa phải, chủ đề đa dạng hơn</p>
+                            <div class="audio-player">
+                                <p><strong>Bài 2: Đặt phòng khách sạn</strong></p>
+                                <button class="btn" onclick="playAudio('hotel')">
+                                    <i class="fas fa-play"></i> Phát bài nghe
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <h2><i class="fas fa-tachometer-alt"></i> Bài nghe nâng cao</h2>
+                            <p>Tốc độ nhanh, chủ đề chuyên sâu</p>
+                            <div class="audio-player">
+                                <p><strong>Bài 3: Thảo luận công việc</strong></p>
+                                <button class="btn" onclick="playAudio('meeting')">
+                                    <i class="fas fa-play"></i> Phát bài nghe
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            
+            "/kiem-tra.html": {
+                title: "Kiểm Tra Kiến Thức",
+                content: `
+                    <div class="page-content">
+                        <div class="page-header">
+                            <h1><i class="fas fa-clipboard-check"></i> Kiểm Tra Kiến Thức</h1>
+                            <p>Đánh giá trình độ và tiến bộ của bạn</p>
+                        </div>
+                        
+                        <div class="breadcrumb">
+                            <a href="/" data-link><i class="fas fa-home"></i> Trang chủ</a>
+                            <i class="fas fa-chevron-right"></i>
+                            <span>Kiểm tra</span>
+                        </div>
+                        
+                        <div class="card">
+                            <h2><i class="fas fa-star"></i> Bài kiểm tra ngắn</h2>
+                            <p>Kiểm tra nhanh kiến thức của bạn với 5 câu hỏi</p>
+                            <button class="btn" onclick="startQuickTest()">
+                                <i class="fas fa-hourglass-start"></i> Bắt đầu kiểm tra nhanh
+                            </button>
+                        </div>
+                        
+                        <div class="card">
+                            <h2><i class="fas fa-chart-bar"></i> Bài kiểm tra toàn diện</h2>
+                            <p>Đánh giá toàn bộ kỹ năng nghe, đọc, viết, ngữ pháp</p>
+                            <ul>
+                                <li>Thời gian: 60 phút</li>
+                                <li>Số câu: 50 câu</li>
+                                <li>Độ khó: Đa dạng</li>
+                            </ul>
+                            <button class="btn" onclick="startFullTest()">
+                                <i class="fas fa-clipboard-list"></i> Bắt đầu kiểm tra toàn diện
+                            </button>
+                        </div>
+                        
+                        <div class="card">
+                            <h2><i class="fas fa-history"></i> Lịch sử kiểm tra</h2>
+                            <p>Theo dõi tiến bộ của bạn qua thời gian</p>
+                            <div class="history-item">
+                                <p><strong>Kiểm tra ngày 15/10/2023:</strong> 85/100 điểm</p>
+                            </div>
+                            <div class="history-item">
+                                <p><strong>Kiểm tra ngày 01/10/2023:</strong> 78/100 điểm</p>
+                            </div>
+                            <div class="history-item">
+                                <p><strong>Kiểm tra ngày 15/09/2023:</strong> 70/100 điểm</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        // ========== ROUTER (Hệ thống điều hướng) ==========
+        class Router {
+            constructor() {
+                this.routes = pages;
+                this.currentPath = window.location.pathname;
+                this.init();
+            }
+            
+            init() {
+                // Xử lý khi trang được tải
+                window.addEventListener('DOMContentLoaded', () => {
+                    this.navigate(this.currentPath);
                 });
+                
+                // Xử lý khi click vào link
+                document.addEventListener('click', (e) => {
+                    if (e.target.matches('[data-link]') || e.target.closest('[data-link]')) {
+                        e.preventDefault();
+                        const link = e.target.closest('[data-link]');
+                        const path = link.getAttribute('href');
+                        this.navigate(path);
+                    }
+                });
+                
+                // Xử lý nút back/forward của trình duyệt
+                window.addEventListener('popstate', () => {
+                    this.navigate(window.location.pathname, false);
+                });
+            }
+            
+            navigate(path, addToHistory = true) {
+                // Chuẩn hóa đường dẫn
+                if (path === '') path = '/';
+                if (!path.startsWith('/')) path = '/' + path;
+                
+                // Kiểm tra route có tồn tại không
+                const route = this.routes[path] || this.routes['/'];
+                
+                // Cập nhật URL trong trình duyệt
+                if (addToHistory) {
+                    window.history.pushState({}, '', path);
+                }
+                
+                // Cập nhật tiêu đề và nội dung trang
+                document.title = route.title;
+                document.getElementById('mainContent').innerHTML = route.content;
+                
+                // Cập nhật trạng thái active cho menu
+                this.updateActiveLink(path);
+                
+                // Đóng menu trên mobile
+                this.closeMobileMenu();
+                
+                // Cuộn lên đầu trang
+                window.scrollTo(0, 0);
+            }
+            
+            updateActiveLink(path) {
+                // Xóa tất cả class active
+                document.querySelectorAll('[data-link]').forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                // Thêm class active cho link hiện tại
+                document.querySelectorAll(`[href="${path}"]`).forEach(link => {
+                    link.classList.add('active');
+                });
+            }
+            
+            closeMobileMenu() {
+                document.getElementById('navMenu').classList.remove('active');
+                document.getElementById('overlay').classList.remove('active');
+            }
+        }
+
+        // ========== XỬ LÝ MENU MOBILE ==========
+        function initMobileMenu() {
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+            const overlay = document.getElementById('overlay');
+            
+            menuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                overlay.classList.toggle('active');
+            });
+            
+            overlay.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+            
+            // Đóng menu khi click vào link
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    overlay.classList.remove('active');
+                });
+            });
+        }
+
+        // ========== CÁC HÀM TIỆN ÍCH ==========
+        function showMoreVocabulary() {
+            alert('Đang tải thêm từ vựng... (Tính năng demo)');
+        }
+        
+        function playAudio(type) {
+            const audioTypes = {
+                'greeting': 'Bài nghe: Hello, how are you? I am fine, thank you!',
+                'hotel': 'Bài nghe: I would like to book a room for two nights.',
+                'meeting': 'Bài nghe: Let\'s discuss the project timeline for next quarter.'
+            };
+            
+            alert(`Đang phát: ${audioTypes[type]}`);
+        }
+        
+        function startQuickTest() {
+            alert('Bắt đầu bài kiểm tra nhanh với 5 câu hỏi! (Tính năng demo)');
+        }
+        
+        function startFullTest() {
+            alert('Bắt đầu bài kiểm tra toàn diện 60 phút! (Tính năng demo)');
+        }
+
+        // ========== KHỞI TẠO ỨNG DỤNG KHI TRANG TẢI XONG ==========
+        document.addEventListener('DOMContentLoaded', () => {
+            // Khởi tạo router
+            new Router();
+            
+            // Khởi tạo menu mobile
+            initMobileMenu();
+            
+            // Thêm hiệu ứng cho các nút
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('btn') || e.target.closest('.btn')) {
+                    const btn = e.target.classList.contains('btn') ? e.target : e.target.closest('.btn');
+                    
+                    // Hiệu ứng click
+                    btn.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        btn.style.transform = '';
+                    }, 150);
+                }
             });
         });
     </script>
