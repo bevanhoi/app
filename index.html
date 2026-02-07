@@ -1099,11 +1099,11 @@
             
             // Hiển thị tối đa 5 trang
             let startPage = Math.max(1, currentPage - 2);
-            let endPage = Math.min(totalPages, startPage + 4);
+            let endPage = Math.min(totalPages, startPage + 10);
             
             // Điều chỉnh nếu gần cuối
-            if (endPage - startPage < 4 && startPage > 1) {
-                startPage = Math.max(1, endPage - 4);
+            if (endPage - startPage < 10 && startPage > 1) {
+                startPage = Math.max(1, endPage - 10);
             }
             
             for (let i = startPage; i <= endPage; i++) {
