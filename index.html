@@ -3,1315 +3,476 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ thống học từ vựng tiếng Anh 3000 từ chuyên nghiệp</title>
+    <title>Học Tiếng Anh - Giao diện màu cam</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-dark: #1a1f2e;
-            --secondary-dark: #2d3447;
-            --tertiary-dark: #3a4158;
-            --primary-blue: #4361ee;
-            --secondary-blue: #3a56d4;
-            --accent-green: #06d6a0;
-            --accent-yellow: #ffd166;
-            --accent-red: #ef476f;
-            --accent-purple: #9d4edd;
-            --text-primary: #f8f9fa;
-            --text-secondary: #adb5bd;
-            --text-tertiary: #6c757d;
-            --border-color: #495057;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            --card-bg: rgba(45, 52, 71, 0.8);
-            --transition: all 0.3s ease;
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background-color: var(--primary-dark);
-            color: var(--text-primary);
+            background-color: #fff9f0;
+            color: #333;
             line-height: 1.6;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1600px;
-            margin: 0 auto;
         }
         
         /* Header */
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 30px;
-            background: linear-gradient(135deg, var(--secondary-dark), var(--tertiary-dark));
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--accent-green), var(--primary-blue), var(--accent-purple));
-        }
-        
-        .header h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            background: linear-gradient(90deg, var(--accent-green), var(--primary-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .header .subtitle {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 800px;
-            margin: 0 auto 25px;
-        }
-        
-        /* Stats */
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        
-        .stat-card {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            display: flex;
-            align-items: center;
-            transition: var(--transition);
-            border-left: 4px solid var(--primary-blue);
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-        }
-        
-        .stat-icon {
-            font-size: 2.5rem;
-            margin-right: 20px;
-            color: var(--primary-blue);
-        }
-        
-        .stat-content h3 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--accent-green);
-            margin-bottom: 5px;
-        }
-        
-        .stat-content p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-        
-        /* Controls */
-        .controls-container {
-            background: var(--secondary-dark);
-            border-radius: 16px;
-            padding: 30px;
-            margin-bottom: 40px;
-            box-shadow: var(--shadow);
-        }
-        
-        .controls-title {
-            font-size: 1.5rem;
-            margin-bottom: 25px;
-            color: var(--accent-yellow);
-            display: flex;
-            align-items: center;
-        }
-        
-        .controls-title i {
-            margin-right: 10px;
-        }
-        
-        .filter-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        
-        .filter-group {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .filter-label {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-        
-        .filter-label i {
-            margin-right: 8px;
-            color: var(--primary-blue);
-        }
-        
-        .filter-select, .filter-input {
-            padding: 14px;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            background: var(--primary-dark);
-            color: var(--text-primary);
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-        
-        .filter-select:focus, .filter-input:focus {
-            outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
-        }
-        
-        .filter-option-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        
-        .filter-option {
-            padding: 8px 16px;
-            background: var(--primary-dark);
-            border: 2px solid var(--border-color);
-            border-radius: 20px;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 0.9rem;
-        }
-        
-        .filter-option:hover, .filter-option.active {
-            background: var(--primary-blue);
+        header {
+            background: linear-gradient(135deg, #ff8c00, #ff6b00);
             color: white;
-            border-color: var(--primary-blue);
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(255, 107, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         
-        /* Table Container */
-        .table-container {
-            background: var(--secondary-dark);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            margin-bottom: 40px;
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
         
-        .table-header {
-            padding: 25px 30px;
-            background: var(--tertiary-dark);
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
         }
         
-        .table-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--accent-yellow);
-        }
-        
-        .table-actions {
+        .logo {
             display: flex;
+            align-items: center;
             gap: 15px;
         }
         
-        .table-action-btn {
-            padding: 10px 20px;
-            background: var(--primary-dark);
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: var(--transition);
+        .logo i {
+            font-size: 2.5rem;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: #ffeb3b;
+        }
+        
+        /* Navigation */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 8px 16px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             gap: 8px;
         }
         
-        .table-action-btn:hover {
-            background: var(--primary-blue);
-            border-color: var(--primary-blue);
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
         }
         
-        .vocabulary-table {
-            width: 100%;
-            border-collapse: collapse;
+        nav a.active {
+            background-color: #ffeb3b;
+            color: #ff6b00;
         }
         
-        .vocabulary-table thead {
-            background: var(--tertiary-dark);
-            position: sticky;
-            top: 0;
-            z-index: 10;
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            background-color: #fff4e6;
+            border-bottom: 1px solid #ffe0b2;
         }
         
-        .vocabulary-table th {
-            padding: 20px 15px;
-            text-align: left;
-            font-weight: 600;
-            color: var(--accent-yellow);
-            border-bottom: 2px solid var(--border-color);
-            white-space: nowrap;
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
         }
         
-        .vocabulary-table tbody tr {
-            border-bottom: 1px solid var(--border-color);
-            transition: var(--transition);
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 40px;
         }
         
-        .vocabulary-table tbody tr:hover {
-            background: rgba(67, 97, 238, 0.1);
+        .hero-text h2 {
+            font-size: 2.8rem;
+            color: #ff6b00;
+            margin-bottom: 20px;
+            line-height: 1.2;
         }
         
-        .vocabulary-table tbody tr.learned {
-            background: rgba(6, 214, 160, 0.08);
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
         }
         
-        .vocabulary-table td {
-            padding: 18px 15px;
-            vertical-align: top;
-        }
-        
-        /* Cell styling */
-        .word-cell {
-            font-weight: 600;
-            font-size: 1.1rem;
-            color: var(--text-primary);
-        }
-        
-        .ipa-cell {
-            font-family: 'Arial', sans-serif;
-            color: var(--accent-green);
-            font-size: 0.95rem;
-        }
-        
-        .pronunciation-cell {
-            color: var(--accent-purple);
-            font-style: italic;
-        }
-        
-        .meaning-cell {
-            color: var(--text-primary);
-        }
-        
-        .example-cell {
-            color: var(--text-secondary);
-            font-style: italic;
-            font-size: 0.95rem;
-        }
-        
-        .example-translation {
-            display: block;
-            color: var(--text-tertiary);
-            margin-top: 5px;
-            font-size: 0.9rem;
-        }
-        
-        .pos-tag {
-            display: inline-block;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-right: 5px;
-            margin-bottom: 5px;
-        }
-        
-        .pos-noun {
-            background: rgba(67, 97, 238, 0.2);
-            color: var(--primary-blue);
-            border: 1px solid var(--primary-blue);
-        }
-        
-        .pos-verb {
-            background: rgba(239, 71, 111, 0.2);
-            color: var(--accent-red);
-            border: 1px solid var(--accent-red);
-        }
-        
-        .pos-adj {
-            background: rgba(6, 214, 160, 0.2);
-            color: var(--accent-green);
-            border: 1px solid var(--accent-green);
-        }
-        
-        .pos-adv {
-            background: rgba(255, 209, 102, 0.2);
-            color: var(--accent-yellow);
-            border: 1px solid var(--accent-yellow);
-        }
-        
-        .pos-other {
-            background: rgba(157, 78, 221, 0.2);
-            color: var(--accent-purple);
-            border: 1px solid var(--accent-purple);
-        }
-        
-        .topic-tag {
-            display: inline-block;
-            padding: 5px 12px;
-            background: var(--tertiary-dark);
-            color: var(--text-secondary);
-            border-radius: 4px;
-            font-size: 0.8rem;
-            margin-right: 5px;
-            margin-bottom: 5px;
-        }
-        
-        .level-badge {
-            display: inline-block;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
             text-align: center;
         }
         
-        .level-a1 {
-            background: rgba(6, 214, 160, 0.2);
-            color: var(--accent-green);
-            border: 1px solid var(--accent-green);
-        }
-        
-        .level-a2 {
-            background: rgba(67, 97, 238, 0.2);
-            color: var(--primary-blue);
-            border: 1px solid var(--primary-blue);
-        }
-        
-        .level-b1 {
-            background: rgba(255, 209, 102, 0.2);
-            color: var(--accent-yellow);
-            border: 1px solid var(--accent-yellow);
-        }
-        
-        .level-b2 {
-            background: rgba(239, 71, 111, 0.2);
-            color: var(--accent-red);
-            border: 1px solid var(--accent-red);
-        }
-        
-        .level-c1 {
-            background: rgba(157, 78, 221, 0.2);
-            color: var(--accent-purple);
-            border: 1px solid var(--accent-purple);
-        }
-        
-        .level-c2 {
-            background: rgba(255, 107, 53, 0.2);
-            color: #ff6b35;
-            border: 1px solid #ff6b35;
-        }
-        
-        .day-badge {
-            display: inline-block;
-            padding: 6px 14px;
-            background: var(--tertiary-dark);
-            color: var(--text-primary);
+        .hero-image img {
+            max-width: 100%;
             border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(255, 107, 0, 0.15);
         }
         
-        /* Audio button */
-        .audio-btn {
-            background: none;
-            border: none;
-            color: var(--primary-blue);
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: var(--transition);
-            padding: 5px;
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #ff6b00;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #777;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(255, 107, 0, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 107, 0, 0.15);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background-color: #fff3e0;
             border-radius: 50%;
-        }
-        
-        .audio-btn:hover {
-            background: rgba(67, 97, 238, 0.1);
-            transform: scale(1.1);
-        }
-        
-        /* Pagination */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 25px;
-            gap: 15px;
-        }
-        
-        .pagination-btn {
-            padding: 10px 20px;
-            background: var(--primary-dark);
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .pagination-btn:hover:not(:disabled) {
-            background: var(--primary-blue);
-            border-color: var(--primary-blue);
-        }
-        
-        .pagination-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        
-        .page-numbers {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .page-number {
-            width: 40px;
-            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 8px;
-            background: var(--primary-dark);
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 600;
+            margin: 0 auto 20px;
         }
         
-        .page-number:hover, .page-number.active {
-            background: var(--primary-blue);
+        .feature-icon i {
+            font-size: 2.5rem;
+            color: #ff6b00;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            color: #ff6b00;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .feature-link {
+            display: inline-block;
+            background-color: #ff6b00;
             color: white;
+            text-decoration: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-link:hover {
+            background-color: #ff8c00;
+            transform: scale(1.05);
         }
         
         /* Footer */
-        .footer {
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.5rem;
+            color: #ff8c00;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section p {
+            color: #bbb;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #ff8c00;
+        }
+        
+        .copyright {
             text-align: center;
-            padding: 30px;
-            color: var(--text-tertiary);
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
             font-size: 0.9rem;
-            border-top: 1px solid var(--border-color);
-            margin-top: 40px;
         }
         
         /* Responsive */
-        @media (max-width: 1200px) {
-            .vocabulary-table {
-                font-size: 0.95rem;
-            }
-            
-            .vocabulary-table th, .vocabulary-table td {
-                padding: 15px 10px;
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .table-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .table-actions {
-                width: 100%;
-                justify-content: flex-start;
-            }
-            
-            .vocabulary-table {
-                display: block;
-                overflow-x: auto;
-            }
-        }
-        
         @media (max-width: 768px) {
-            .header h1 {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                gap: 10px;
+            }
+            
+            nav a {
+                font-size: 1rem;
+                padding: 6px 12px;
+            }
+            
+            .hero-content {
+                flex-direction: column;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+            
+            .hero-text h2 {
                 font-size: 2.2rem;
             }
-            
-            .stat-card {
-                padding: 20px;
-            }
-            
-            .stat-icon {
-                font-size: 2rem;
-                margin-right: 15px;
-            }
-            
-            .stat-content h3 {
-                font-size: 1.7rem;
-            }
-            
-            .filter-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .pagination {
-                flex-wrap: wrap;
-            }
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .feature-card, .hero-text, .hero-image {
+            animation: fadeIn 0.8s ease-out;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <h1><i class="fas fa-language"></i> Hệ thống học từ vựng tiếng Anh 3000 từ</h1>
-            <p class="subtitle">Học 3000 từ vựng thông dụng nhất với phiên âm IPA, ví dụ minh họa và phân loại từ loại chi tiết</p>
-            <div style="margin-top: 20px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
-                <span style="background: rgba(6, 214, 160, 0.2); color: var(--accent-green); padding: 8px 16px; border-radius: 20px; font-size: 0.9rem;">
-                    <i class="fas fa-volume-up"></i> IPA & Phát âm
-                </span>
-                <span style="background: rgba(67, 97, 238, 0.2); color: var(--primary-blue); padding: 8px 16px; border-radius: 20px; font-size: 0.9rem;">
-                    <i class="fas fa-tags"></i> 15+ Chủ đề
-                </span>
-                <span style="background: rgba(255, 209, 102, 0.2); color: var(--accent-yellow); padding: 8px 16px; border-radius: 20px; font-size: 0.9rem;">
-                    <i class="fas fa-layer-group"></i> 6 Cấp độ
-                </span>
-                <span style="background: rgba(157, 78, 221, 0.2); color: var(--accent-purple); padding: 8px 16px; border-radius: 20px; font-size: 0.9rem;">
-                    <i class="fas fa-calendar-alt"></i> 120 Ngày
-                </span>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-language"></i>
+                    <h1>Học <span>Tiếng Anh</span></h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="/" class="active"><i class="fas fa-home"></i> Trang chủ</a></li>
+                        <li><a href="/tu-vung.html"><i class="fas fa-book"></i> Từ vựng</a></li>
+                        <li><a href="/tieng-anh.html"><i class="fas fa-globe-americas"></i> Tiếng Anh</a></li>
+                    </ul>
+                </nav>
             </div>
-        </header>
-        
-        <div class="stats-container">
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-book"></i>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2>Nâng cao kỹ năng Tiếng Anh của bạn</h2>
+                    <p>Khám phá các bài học từ vựng, ngữ pháp và kỹ năng giao tiếp tiếng Anh với phương pháp học tập hiệu quả và thú vị.</p>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                        <a href="/tu-vung.html" class="feature-link">Học từ vựng</a>
+                        <a href="/tieng-anh.html" class="feature-link" style="background-color: #333; color: white;">Khóa học tiếng Anh</a>
+                    </div>
                 </div>
-                <div class="stat-content">
-                    <h3 id="total-words">3000</h3>
-                    <p>Tổng số từ vựng</p>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-check-circle"></i>
-                </div>
-                <div class="stat-content">
-                    <h3 id="learned-words">0</h3>
-                    <p>Từ đã học</p>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <div class="stat-content">
-                    <h3>120</h3>
-                    <p>Ngày học tập</p>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-tags"></i>
-                </div>
-                <div class="stat-content">
-                    <h3>25</h3>
-                    <p>Từ/ngày</p>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-headphones"></i>
-                </div>
-                <div class="stat-content">
-                    <h3>3000</h3>
-                    <p>Phiên âm IPA</p>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-microphone"></i>
-                </div>
-                <div class="stat-content">
-                    <h3>15</h3>
-                    <p>Chủ đề học tập</p>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Học tiếng Anh">
                 </div>
             </div>
         </div>
-        
-        <div class="controls-container">
-            <h3 class="controls-title"><i class="fas fa-sliders-h"></i> Bộ lọc & Tìm kiếm</h3>
-            <div class="filter-grid">
-                <div class="filter-group">
-                    <label class="filter-label"><i class="fas fa-filter"></i> Lọc theo chủ đề</label>
-                    <select class="filter-select" id="topic-filter">
-                        <option value="all">Tất cả chủ đề</option>
-                        <option value="daily">Cuộc sống hàng ngày</option>
-                        <option value="family">Gia đình & Mối quan hệ</option>
-                        <option value="food">Ẩm thực & Đồ uống</option>
-                        <option value="work">Công việc & Nghề nghiệp</option>
-                        <option value="education">Giáo dục & Học tập</option>
-                        <option value="travel">Du lịch & Giao thông</option>
-                        <option value="health">Sức khỏe & Y tế</option>
-                        <option value="business">Kinh doanh & Thương mại</option>
-                        <option value="technology">Công nghệ & Khoa học</option>
-                        <option value="nature">Thiên nhiên & Môi trường</option>
-                        <option value="arts">Nghệ thuật & Giải trí</option>
-                        <option value="sports">Thể thao & Giải trí</option>
-                        <option value="finance">Tài chính & Đầu tư</option>
-                        <option value="society">Xã hội & Văn hóa</option>
-                    </select>
-                </div>
-                
-                <div class="filter-group">
-                    <label class="filter-label"><i class="fas fa-layer-group"></i> Lọc theo cấp độ</label>
-                    <select class="filter-select" id="level-filter">
-                        <option value="all">Tất cả cấp độ</option>
-                        <option value="A1">A1 (Mới bắt đầu)</option>
-                        <option value="A2">A2 (Sơ cấp)</option>
-                        <option value="B1">B1 (Trung cấp)</option>
-                        <option value="B2">B2 (Trung cao cấp)</option>
-                        <option value="C1">C1 (Cao cấp)</option>
-                        <option value="C2">C2 (Thành thạo)</option>
-                    </select>
-                </div>
-                
-                <div class="filter-group">
-                    <label class="filter-label"><i class="fas fa-tag"></i> Lọc theo từ loại</label>
-                    <select class="filter-select" id="pos-filter">
-                        <option value="all">Tất cả từ loại</option>
-                        <option value="noun">Danh từ</option>
-                        <option value="verb">Động từ</option>
-                        <option value="adjective">Tính từ</option>
-                        <option value="adverb">Trạng từ</option>
-                        <option value="preposition">Giới từ</option>
-                        <option value="conjunction">Liên từ</option>
-                        <option value="pronoun">Đại từ</option>
-                    </select>
-                </div>
-                
-                <div class="filter-group">
-                    <label class="filter-label"><i class="fas fa-search"></i> Tìm kiếm từ vựng</label>
-                    <input type="text" class="filter-input" id="search-input" placeholder="Nhập từ tiếng Anh, IPA hoặc nghĩa tiếng Việt...">
-                </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Khám phá các khóa học</h2>
+                <p>Chúng tôi cung cấp các khóa học tiếng Anh toàn diện giúp bạn nhanh chóng cải thiện kỹ năng ngôn ngữ</p>
             </div>
             
-            <div style="margin-top: 25px;">
-                <label class="filter-label"><i class="fas fa-calendar-alt"></i> Lọc theo ngày học</label>
-                <div class="filter-option-group" id="day-filter">
-                    <div class="filter-option active" data-day="all">Tất cả</div>
-                    <div class="filter-option" data-day="1-30">Ngày 1-30</div>
-                    <div class="filter-option" data-day="31-60">Ngày 31-60</div>
-                    <div class="filter-option" data-day="61-90">Ngày 61-90</div>
-                    <div class="filter-option" data-day="91-120">Ngày 91-120</div>
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>Từ vựng tiếng Anh</h3>
+                    <p>Mở rộng vốn từ vựng của bạn với hàng nghìn từ và cụm từ thông dụng, được phân loại theo chủ đề và trình độ.</p>
+                    <a href="/tu-vung.html" class="feature-link">Khám phá ngay</a>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Giao tiếp tiếng Anh</h3>
+                    <p>Học các kỹ năng giao tiếp thực tế với các tình huống hội thoại hàng ngày và chuyên nghiệp.</p>
+                    <a href="/tieng-anh.html" class="feature-link">Bắt đầu học</a>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headphones-alt"></i>
+                    </div>
+                    <h3>Luyện nghe & phát âm</h3>
+                    <p>Cải thiện kỹ năng nghe và phát âm với các bài luyện tập tương tác và công nghệ nhận diện giọng nói.</p>
+                    <a href="/tieng-anh.html" class="feature-link">Luyện tập ngay</a>
                 </div>
             </div>
         </div>
-        
-        <div class="table-container">
-            <div class="table-header">
-                <h3 class="table-title"><i class="fas fa-table"></i> Bảng từ vựng</h3>
-                <div class="table-actions">
-                    <button class="table-action-btn" id="mark-learned">
-                        <i class="fas fa-check"></i> Đánh dấu đã học
-                    </button>
-                    <button class="table-action-btn" id="reset-progress">
-                        <i class="fas fa-redo"></i> Đặt lại tiến độ
-                    </button>
-                    <button class="table-action-btn" id="export-btn">
-                        <i class="fas fa-download"></i> Xuất dữ liệu
-                    </button>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Học Tiếng Anh</h3>
+                    <p>Nền tảng học tiếng Anh trực tuyến hàng đầu với phương pháp học tập hiệu quả, cá nhân hóa và thú vị.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Liên kết nhanh</h3>
+                    <ul class="footer-links">
+                        <li><a href="/">Trang chủ</a></li>
+                        <li><a href="/tu-vung.html">Từ vựng tiếng Anh</a></li>
+                        <li><a href="/tieng-anh.html">Khóa học tiếng Anh</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Liên hệ</h3>
+                    <p>Email: contact@hoctienganh.com</p>
+                    <p>Điện thoại: (0123) 456-789</p>
                 </div>
             </div>
             
-            <div style="overflow-x: auto;">
-                <table class="vocabulary-table" id="vocabulary-table">
-                    <thead>
-                        <tr>
-                            <th width="5%">#</th>
-                            <th width="12%">Từ vựng</th>
-                            <th width="10%">Phiên âm IPA</th>
-                            <th width="10%">Phát âm</th>
-                            <th width="12%">Nghĩa tiếng Việt</th>
-                            <th width="10%">Từ loại</th>
-                            <th width="18%">Ví dụ</th>
-                            <th width="8%">Cấp độ</th>
-                            <th width="8%">Ngày</th>
-                            <th width="7%">Chủ đề</th>
-                        </tr>
-                    </thead>
-                    <tbody id="vocabulary-body">
-                        <!-- Dữ liệu sẽ được thêm bằng JavaScript -->
-                    </tbody>
-                </table>
-            </div>
-            
-            <div class="pagination">
-                <button class="pagination-btn" id="prev-page" disabled>
-                    <i class="fas fa-chevron-left"></i> Trước
-                </button>
-                <div class="page-numbers" id="page-numbers">
-                    <!-- Số trang sẽ được thêm bằng JavaScript -->
-                </div>
-                <button class="pagination-btn" id="next-page">
-                    Sau <i class="fas fa-chevron-right"></i>
-                </button>
+            <div class="copyright">
+                <p>&copy; 2023 Học Tiếng Anh. Tất cả các quyền được bảo lưu.</p>
             </div>
         </div>
-        
-        <footer class="footer">
-            <p>Hệ thống học từ vựng tiếng Anh 3000 từ chuyên nghiệp | Phiên bản 2.0</p>
-            <p style="margin-top: 10px;">Cung cấp phiên âm IPA, ví dụ minh họa và phân loại từ loại chi tiết | 120 ngày học tập | 25 từ/ngày</p>
-        </footer>
-    </div>
+    </footer>
 
     <script>
-        // Dữ liệu từ vựng mẫu (300 từ đầu tiên trong tổng số 3000 từ)
-        
-        const vocabularyData = [
-    // ========== DAY 1 ==========
-    // Danh từ (nouns)
-    { id: 1, word: "ability", ipa: "/əˈbɪləti/", pronunciation: "ơ-bí-lơ-ti", meaning: "khả năng", pos: ["noun"], example: "She has the ability to speak three languages fluently.", exampleTranslation: "Cô ấy có khả năng nói ba ngôn ngữ một cách trôi chảy.", level: "B1", day: 1, topic: "daily" },
-    { id: 2, word: "account", ipa: "/əˈkaʊnt/", pronunciation: "ơ-cao-n-t", meaning: "tài khoản, tường thuật", pos: ["noun", "verb"], example: "I need to check my bank account balance.", exampleTranslation: "Tôi cần kiểm tra số dư tài khoản ngân hàng của mình.", level: "A2", day: 1, topic: "finance" },
-    { id: 3, word: "action", ipa: "/ˈækʃn/", pronunciation: "éc-sần", meaning: "hành động", pos: ["noun"], example: "We need to take immediate action to solve this problem.", exampleTranslation: "Chúng ta cần hành động ngay lập tức để giải quyết vấn đề này.", level: "A2", day: 1, topic: "daily" },
-    { id: 4, word: "activity", ipa: "/ækˈtɪvəti/", pronunciation: "éc-tí-vơ-ti", meaning: "hoạt động", pos: ["noun"], example: "Physical activity is important for good health.", exampleTranslation: "Hoạt động thể chất quan trọng đối với sức khỏe tốt.", level: "A2", day: 1, topic: "daily" },
-    { id: 5, word: "address", ipa: "/əˈdres/", pronunciation: "ơ-đrét-s", meaning: "địa chỉ, diễn văn", pos: ["noun", "verb"], example: "Please write your address clearly on the form.", exampleTranslation: "Vui lòng viết rõ địa chỉ của bạn trên mẫu đơn.", level: "A1", day: 1, topic: "daily" },
-    // Động từ (verbs)
-    { id: 6, word: "achieve", ipa: "/əˈtʃiːv/", pronunciation: "ơ-chi-v", meaning: "đạt được", pos: ["verb"], example: "She worked hard to achieve her goals.", exampleTranslation: "Cô ấy đã làm việc chăm chỉ để đạt được mục tiêu của mình.", level: "B1", day: 1, topic: "work" },
-    { id: 7, word: "act", ipa: "/ækt/", pronunciation: "éct", meaning: "hành động, diễn xuất", pos: ["verb", "noun"], example: "We must act quickly to prevent further damage.", exampleTranslation: "Chúng ta phải hành động nhanh chóng để ngăn chặn thiệt hại thêm.", level: "A2", day: 1, topic: "daily" },
-    { id: 8, word: "add", ipa: "/æd/", pronunciation: "ét", meaning: "thêm vào, cộng", pos: ["verb"], example: "Add some salt to the soup to enhance the flavor.", exampleTranslation: "Thêm một chút muối vào súp để tăng hương vị.", level: "A1", day: 1, topic: "food" },
-    { id: 9, word: "admire", ipa: "/ədˈmaɪər/", pronunciation: "ớt-mai-ơ", meaning: "ngưỡng mộ", pos: ["verb"], example: "I admire her dedication to her work.", exampleTranslation: "Tôi ngưỡng mộ sự tận tâm của cô ấy với công việc.", level: "B1", day: 1, topic: "daily" },
-    { id: 10, word: "admit", ipa: "/ədˈmɪt/", pronunciation: "ớt-mít", meaning: "thừa nhận, cho vào", pos: ["verb"], example: "He finally admitted that he was wrong.", exampleTranslation: "Cuối cùng anh ấy đã thừa nhận rằng mình sai.", level: "B1", day: 1, topic: "daily" },
-    // Tính từ (adjectives)
-    { id: 11, word: "able", ipa: "/ˈeɪbl/", pronunciation: "ây-bần", meaning: "có khả năng", pos: ["adjective"], example: "She is able to finish the project on time.", exampleTranslation: "Cô ấy có khả năng hoàn thành dự án đúng hạn.", level: "A2", day: 1, topic: "daily" },
-    { id: 12, word: "absolute", ipa: "/ˈæbsəluːt/", pronunciation: "ép-bơ-lút", meaning: "tuyệt đối, hoàn toàn", pos: ["adjective"], example: "I have absolute confidence in your abilities.", exampleTranslation: "Tôi có sự tin tưởng tuyệt đối vào khả năng của bạn.", level: "B2", day: 1, topic: "daily" },
-    { id: 13, word: "academic", ipa: "/ˌækəˈdemɪk/", pronunciation: "éc-cơ-đe-míc", meaning: "học thuật, thuộc viện hàn lâm", pos: ["adjective", "noun"], example: "She has a strong academic background in physics.", exampleTranslation: "Cô ấy có nền tảng học thuật vững chắc về vật lý.", level: "B2", day: 1, topic: "education" },
-    { id: 14, word: "acceptable", ipa: "/əkˈseptəbl/", pronunciation: "ớc-sép-tơ-bần", meaning: "có thể chấp nhận được", pos: ["adjective"], example: "The quality of the product is acceptable for the price.", exampleTranslation: "Chất lượng sản phẩm có thể chấp nhận được với mức giá.", level: "B1", day: 1, topic: "business" },
-    { id: 15, word: "accurate", ipa: "/ˈækjərət/", pronunciation: "éc-kiu-rớt", meaning: "chính xác", pos: ["adjective"], example: "We need accurate information to make a decision.", exampleTranslation: "Chúng ta cần thông tin chính xác để đưa ra quyết định.", level: "B1", day: 1, topic: "daily" },
-    // Thêm từ vựng phong phú hơn
-    { id: 16, word: "benefit", ipa: "/ˈbenɪfɪt/", pronunciation: "be-ni-phít", meaning: "lợi ích", pos: ["noun", "verb"], example: "Regular exercise has many health benefits.", exampleTranslation: "Tập thể dục thường xuyên có nhiều lợi ích cho sức khỏe.", level: "A2", day: 1, topic: "health" },
-    { id: 17, word: "business", ipa: "/ˈbɪznəs/", pronunciation: "bíz-nớt-s", meaning: "kinh doanh, công việc", pos: ["noun"], example: "He started his own business last year.", exampleTranslation: "Anh ấy đã bắt đầu công việc kinh doanh riêng của mình vào năm ngoái.", level: "A2", day: 1, topic: "business" },
-    { id: 18, word: "capital", ipa: "/ˈkæpɪtl/", pronunciation: "ké-pi-tần", meaning: "thủ đô, vốn", pos: ["noun", "adjective"], example: "London is the capital of England.", exampleTranslation: "Luân Đôn là thủ đô của nước Anh.", level: "A2", day: 1, topic: "society" },
-    { id: 19, word: "challenge", ipa: "/ˈtʃæləndʒ/", pronunciation: "ché-lần-j", meaning: "thách thức", pos: ["noun", "verb"], example: "Learning a new language is always a challenge.", exampleTranslation: "Học một ngôn ngữ mới luôn là một thách thức.", level: "B1", day: 1, topic: "education" },
-    { id: 20, word: "communication", ipa: "/kəˌmjuːnɪˈkeɪʃn/", pronunciation: "cơ-miu-ni-kây-sần", meaning: "giao tiếp", pos: ["noun"], example: "Good communication is essential in a relationship.", exampleTranslation: "Giao tiếp tốt là điều cần thiết trong một mối quan hệ.", level: "B1", day: 1, topic: "daily" },
-    // Các từ loại khác
-    { id: 21, word: "beautiful", ipa: "/ˈbjuːtɪfl/", pronunciation: "biu-ti-phần", meaning: "đẹp", pos: ["adjective"], example: "She has a beautiful voice.", exampleTranslation: "Cô ấy có một giọng hát đẹp.", level: "A1", day: 1, topic: "daily" },
-    { id: 22, word: "quickly", ipa: "/ˈkwɪkli/", pronunciation: "quýt-li", meaning: "nhanh chóng", pos: ["adverb"], example: "He quickly finished his homework.", exampleTranslation: "Anh ấy nhanh chóng hoàn thành bài tập về nhà.", level: "A1", day: 1, topic: "daily" },
-    { id: 23, word: "between", ipa: "/bɪˈtwiːn/", pronunciation: "bi-tuyn", meaning: "giữa", pos: ["preposition"], example: "The book is between the two boxes.", exampleTranslation: "Cuốn sách nằm giữa hai chiếc hộp.", level: "A1", day: 1, topic: "daily" },
-    { id: 24, word: "and", ipa: "/ənd/", pronunciation: "ần-đ", meaning: "và", pos: ["conjunction"], example: "I like coffee and tea.", exampleTranslation: "Tôi thích cà phê và trà.", level: "A1", day: 1, topic: "daily" },
-    { id: 25, word: "she", ipa: "/ʃiː/", pronunciation: "shi", meaning: "cô ấy, bà ấy", pos: ["pronoun"], example: "She is my best friend.", exampleTranslation: "Cô ấy là bạn thân nhất của tôi.", level: "A1", day: 1, topic: "daily" },
-    { id: 26, word: "the", ipa: "/ðə/", pronunciation: "thờ", meaning: "cái, con, người... (mạo từ xác định)", pos: ["article"], example: "The sun is shining.", exampleTranslation: "Mặt trời đang tỏa sáng.", level: "A1", day: 1, topic: "daily" },
-    { id: 27, word: "in", ipa: "/ɪn/", pronunciation: "in", meaning: "trong, ở tại", pos: ["preposition"], example: "The cat is in the box.", exampleTranslation: "Con mèo ở trong hộp.", level: "A1", day: 1, topic: "daily" },
-    { id: 28, word: "of", ipa: "/əv/", pronunciation: "ớp", meaning: "của, thuộc về", pos: ["preposition"], example: "The color of the sky is blue.", exampleTranslation: "Màu của bầu trời là xanh.", level: "A1", day: 1, topic: "daily" },
-    { id: 29, word: "to", ipa: "/tuː/", pronunciation: "tu", meaning: "đến, để", pos: ["preposition"], example: "I go to school every day.", exampleTranslation: "Tôi đi đến trường mỗi ngày.", level: "A1", day: 1, topic: "daily" },
-    { id: 30, word: "is", ipa: "/ɪz/", pronunciation: "iz", meaning: "là, thì, ở (động từ to be)", pos: ["verb"], example: "He is a teacher.", exampleTranslation: "Anh ấy là một giáo viên.", level: "A1", day: 1, topic: "daily" },
-    { id: 31, word: "you", ipa: "/juː/", pronunciation: "iu", meaning: "bạn, anh, chị, ông, bà...", pos: ["pronoun"], example: "How are you?", exampleTranslation: "Bạn có khỏe không?", level: "A1", day: 1, topic: "daily" },
-    { id: 32, word: "that", ipa: "/ðæt/", pronunciation: "thét", meaning: "đó, kia, rằng", pos: ["pronoun", "conjunction"], example: "That is my car.", exampleTranslation: "Đó là xe của tôi.", level: "A1", day: 1, topic: "daily" },
-    { id: 33, word: "it", ipa: "/ɪt/", pronunciation: "ít", meaning: "nó, điều đó", pos: ["pronoun"], example: "It is raining.", exampleTranslation: "Trời đang mưa.", level: "A1", day: 1, topic: "daily" },
-    { id: 34, word: "he", ipa: "/hiː/", pronunciation: "hi", meaning: "anh ấy, ông ấy", pos: ["pronoun"], example: "He likes football.", exampleTranslation: "Anh ấy thích bóng đá.", level: "A1", day: 1, topic: "daily" },
-    { id: 35, word: "with", ipa: "/wɪð/", pronunciation: "uy-th", meaning: "với, cùng", pos: ["preposition"], example: "I live with my family.", exampleTranslation: "Tôi sống với gia đình tôi.", level: "A1", day: 1, topic: "daily" },
-    { id: 36, word: "on", ipa: "/ɒn/", pronunciation: "on", meaning: "trên, vào (ngày)", pos: ["preposition"], example: "The book is on the table.", exampleTranslation: "Cuốn sách ở trên bàn.", level: "A1", day: 1, topic: "daily" },
-    { id: 37, word: "do", ipa: "/duː/", pronunciation: "đu", meaning: "làm", pos: ["verb"], example: "What do you do?", exampleTranslation: "Bạn làm nghề gì?", level: "A1", day: 1, topic: "daily" },
-    { id: 38, word: "at", ipa: "/ət/", pronunciation: "ớt", meaning: "tại, lúc", pos: ["preposition"], example: "I get up at 7 o'clock.", exampleTranslation: "Tôi thức dậy lúc 7 giờ.", level: "A1", day: 1, topic: "daily" },
-    { id: 39, word: "by", ipa: "/baɪ/", pronunciation: "bai", meaning: "bởi, bằng", pos: ["preposition"], example: "This book was written by a famous author.", exampleTranslation: "Cuốn sách này được viết bởi một tác giả nổi tiếng.", level: "A1", day: 1, topic: "daily" },
-    { id: 40, word: "but", ipa: "/bət/", pronunciation: "bớt", meaning: "nhưng", pos: ["conjunction"], example: "I like coffee, but I don't like tea.", exampleTranslation: "Tôi thích cà phê, nhưng tôi không thích trà.", level: "A1", day: 1, topic: "daily" },
-    { id: 41, word: "from", ipa: "/frəm/", pronunciation: "ph-rầm", meaning: "từ, xuất phát từ", pos: ["preposition"], example: "I come from Vietnam.", exampleTranslation: "Tôi đến từ Việt Nam.", level: "A1", day: 1, topic: "daily" },
-    { id: 42, word: "up", ipa: "/ʌp/", pronunciation: "ấp", meaning: "lên, phía trên", pos: ["adverb", "preposition"], example: "Stand up, please.", exampleTranslation: "Làm ơn đứng lên.", level: "A1", day: 1, topic: "daily" },
-    { id: 43, word: "about", ipa: "/əˈbaʊt/", pronunciation: "ơ-bao-t", meaning: "về, khoảng", pos: ["preposition"], example: "We are talking about the weather.", exampleTranslation: "Chúng tôi đang nói về thời tiết.", level: "A1", day: 1, topic: "daily" },
-    { id: 44, word: "get", ipa: "/ɡet/", pronunciation: "ghet", meaning: "nhận được, lấy", pos: ["verb"], example: "I need to get some milk from the shop.", exampleTranslation: "Tôi cần lấy một ít sữa từ cửa hàng.", level: "A1", day: 1, topic: "daily" },
-    { id: 45, word: "have", ipa: "/həv/", pronunciation: "hơ-v", meaning: "có", pos: ["verb"], example: "I have two brothers.", exampleTranslation: "Tôi có hai anh trai.", level: "A1", day: 1, topic: "daily" },
-    { id: 46, word: "not", ipa: "/nɒt/", pronunciation: "nót", meaning: "không", pos: ["adverb"], example: "I do not know.", exampleTranslation: "Tôi không biết.", level: "A1", day: 1, topic: "daily" },
-    { id: 47, word: "or", ipa: "/ɔː(r)/", pronunciation: "o", meaning: "hoặc, hay là", pos: ["conjunction"], example: "Would you like tea or coffee?", exampleTranslation: "Bạn muốn trà hay cà phê?", level: "A1", day: 1, topic: "daily" },
-    { id: 48, word: "as", ipa: "/əz/", pronunciation: "ớt-z", meaning: "như, với tư cách là", pos: ["conjunction", "preposition"], example: "He works as a doctor.", exampleTranslation: "Anh ấy làm việc với tư cách là bác sĩ.", level: "A1", day: 1, topic: "daily" },
-    { id: 49, word: "we", ipa: "/wiː/", pronunciation: "uy", meaning: "chúng tôi, chúng ta", pos: ["pronoun"], example: "We are friends.", exampleTranslation: "Chúng tôi là bạn.", level: "A1", day: 1, topic: "daily" },
-    { id: 50, word: "say", ipa: "/seɪ/", pronunciation: "xây", meaning: "nói", pos: ["verb"], example: "What did you say?", exampleTranslation: "Bạn đã nói gì?", level: "A1", day: 1, topic: "daily" },
-
-    // ========== DAY 2 ==========
-    { id: 51, word: "community", ipa: "/kəˈmjuːnəti/", pronunciation: "cơ-miu-nơ-ti", meaning: "cộng đồng", pos: ["noun"], example: "The local community organized a charity event.", exampleTranslation: "Cộng đồng địa phương đã tổ chức một sự kiện từ thiện.", level: "A2", day: 2, topic: "society" },
-    { id: 52, word: "competition", ipa: "/ˌkɒmpəˈtɪʃn/", pronunciation: "cốm-pơ-tí-sần", meaning: "cuộc thi, sự cạnh tranh", pos: ["noun"], example: "There is strong competition between the two companies.", exampleTranslation: "Có sự cạnh tranh mạnh mẽ giữa hai công ty.", level: "B1", day: 2, topic: "business" },
-    { id: 53, word: "computer", ipa: "/kəmˈpjuːtə(r)/", pronunciation: "căm-piu-tơ", meaning: "máy tính", pos: ["noun"], example: "I use my computer for work and entertainment.", exampleTranslation: "Tôi sử dụng máy tính của mình để làm việc và giải trí.", level: "A1", day: 2, topic: "technology" },
-    { id: 54, word: "condition", ipa: "/kənˈdɪʃn/", pronunciation: "cần-đí-sần", meaning: "điều kiện, tình trạng", pos: ["noun"], example: "The car is in excellent condition.", exampleTranslation: "Chiếc xe đang ở trong tình trạng tuyệt vời.", level: "A2", day: 2, topic: "daily" },
-    { id: 55, word: "confidence", ipa: "/ˈkɒnfɪdəns/", pronunciation: "cón-phí-đần-s", meaning: "sự tự tin", pos: ["noun"], example: "She spoke with confidence during the presentation.", exampleTranslation: "Cô ấy đã nói với sự tự tin trong buổi thuyết trình.", level: "B1", day: 2, topic: "daily" },
-    { id: 56, word: "consider", ipa: "/kənˈsɪdə(r)/", pronunciation: "cần-sí-đơ", meaning: "xem xét, cân nhắc", pos: ["verb"], example: "We need to consider all options before deciding.", exampleTranslation: "Chúng ta cần xem xét tất cả các lựa chọn trước khi quyết định.", level: "B1", day: 2, topic: "daily" },
-    { id: 57, word: "consumer", ipa: "/kənˈsjuːmə(r)/", pronunciation: "cần-siu-mơ", meaning: "người tiêu dùng", pos: ["noun"], example: "Consumer rights are protected by law.", exampleTranslation: "Quyền của người tiêu dùng được pháp luật bảo vệ.", level: "B1", day: 2, topic: "business" },
-    { id: 58, word: "culture", ipa: "/ˈkʌltʃə(r)/", pronunciation: "căn-chơ", meaning: "văn hóa", pos: ["noun"], example: "Japanese culture is fascinating and unique.", exampleTranslation: "Văn hóa Nhật Bản rất hấp dẫn và độc đáo.", level: "A2", day: 2, topic: "society" },
-    { id: 59, word: "decision", ipa: "/dɪˈsɪʒn/", pronunciation: "đi-sí-giần", meaning: "quyết định", pos: ["noun"], example: "Making the right decision is not always easy.", exampleTranslation: "Đưa ra quyết định đúng đắn không phải lúc nào cũng dễ dàng.", level: "A2", day: 2, topic: "daily" },
-    { id: 60, word: "development", ipa: "/dɪˈveləpmənt/", pronunciation: "đi-ve-lớp-mần", meaning: "sự phát triển", pos: ["noun"], example: "The city has seen rapid development in recent years.", exampleTranslation: "Thành phố đã chứng kiến sự phát triển nhanh chóng trong những năm gần đây.", level: "B1", day: 2, topic: "society" },
-    { id: 61, word: "knowledge", ipa: "/ˈnɒlɪdʒ/", pronunciation: "nó-lịt-j", meaning: "kiến thức", pos: ["noun"], example: "He has extensive knowledge of ancient history.", exampleTranslation: "Anh ấy có kiến thức sâu rộng về lịch sử cổ đại.", level: "A2", day: 2, topic: "education" },
-    { id: 62, word: "language", ipa: "/ˈlæŋɡwɪdʒ/", pronunciation: "léng-quỵt-j", meaning: "ngôn ngữ", pos: ["noun"], example: "English is an international language of business.", exampleTranslation: "Tiếng Anh là ngôn ngữ quốc tế của kinh doanh.", level: "A1", day: 2, topic: "education" },
-    { id: 63, word: "management", ipa: "/ˈmænɪdʒmənt/", pronunciation: "me-nịt-j-mần", meaning: "quản lý", pos: ["noun"], example: "Good management is key to a successful business.", exampleTranslation: "Quản lý tốt là chìa khóa cho một doanh nghiệp thành công.", level: "B1", day: 2, topic: "business" },
-    { id: 64, word: "market", ipa: "/ˈmɑːkɪt/", pronunciation: "ma-kít", meaning: "thị trường, chợ", pos: ["noun"], example: "We need to analyze the market before launching the product.", exampleTranslation: "Chúng ta cần phân tích thị trường trước khi ra mắt sản phẩm.", level: "A2", day: 2, topic: "business" },
-    { id: 65, word: "material", ipa: "/məˈtɪəriəl/", pronunciation: "mơ-ti-ri-ần", meaning: "vật liệu, chất liệu", pos: ["noun", "adjective"], example: "The building is made of high-quality materials.", exampleTranslation: "Tòa nhà được làm từ các vật liệu chất lượng cao.", level: "A2", day: 2, topic: "daily" },
-    { id: 66, word: "method", ipa: "/ˈmeθəd/", pronunciation: "mé-thớt", meaning: "phương pháp", pos: ["noun"], example: "We need to find a more efficient method to complete this task.", exampleTranslation: "Chúng ta cần tìm một phương pháp hiệu quả hơn để hoàn thành nhiệm vụ này.", level: "A2", day: 2, topic: "work" },
-    { id: 67, word: "organization", ipa: "/ˌɔːɡənaɪˈzeɪʃn/", pronunciation: "o-gơ-nai-dê-sần", meaning: "tổ chức", pos: ["noun"], example: "She works for a non-profit organization.", exampleTranslation: "Cô ấy làm việc cho một tổ chức phi lợi nhuận.", level: "A2", day: 2, topic: "work" },
-    { id: 68, word: "percent", ipa: "/pəˈsent/", pronunciation: "pơ-xen-t", meaning: "phần trăm", pos: ["noun"], example: "Twenty percent of the students passed the exam.", exampleTranslation: "Hai mươi phần trăm học sinh đã vượt qua kỳ thi.", level: "A1", day: 2, topic: "education" },
-    { id: 69, word: "period", ipa: "/ˈpɪəriəd/", pronunciation: "pi-ri-ớt", meaning: "giai đoạn, thời kỳ", pos: ["noun"], example: "The Renaissance was a period of great cultural change.", exampleTranslation: "Thời kỳ Phục hưng là một giai đoạn thay đổi văn hóa lớn.", level: "A2", day: 2, topic: "education" },
-    { id: 70, word: "policy", ipa: "/ˈpɒləsi/", pronunciation: "pó-li-si", meaning: "chính sách", pos: ["noun"], example: "The company has a strict no-smoking policy.", exampleTranslation: "Công ty có chính sách cấm hút thuốc nghiêm ngặt.", level: "B1", day: 2, topic: "business" },
-    // Từ vựng về sức khỏe (Day 2)
-    { id: 71, word: "medicine", ipa: "/ˈmedsn/", pronunciation: "me-đi-sần", meaning: "thuốc, y học", pos: ["noun"], example: "Take this medicine three times a day.", exampleTranslation: "Uống thuốc này ba lần một ngày.", level: "A2", day: 2, topic: "health" },
-    { id: 72, word: "hospital", ipa: "/ˈhɒspɪtl/", pronunciation: "hós-pi-tần", meaning: "bệnh viện", pos: ["noun"], example: "He was taken to the hospital after the accident.", exampleTranslation: "Anh ấy đã được đưa đến bệnh viện sau vụ tai nạn.", level: "A1", day: 2, topic: "health" },
-    { id: 73, word: "exercise", ipa: "/ˈeksəsaɪz/", pronunciation: "éc-xơ-sai-z", meaning: "bài tập, tập thể dục", pos: ["noun", "verb"], example: "Regular exercise is good for your health.", exampleTranslation: "Tập thể dục thường xuyên tốt cho sức khỏe của bạn.", level: "A1", day: 2, topic: "health" },
-    { id: 74, word: "nutrition", ipa: "/njuˈtrɪʃn/", pronunciation: "niu-tri-sần", meaning: "dinh dưỡng", pos: ["noun"], example: "Proper nutrition is essential for child development.", exampleTranslation: "Dinh dưỡng hợp lý là điều cần thiết cho sự phát triển của trẻ.", level: "B1", day: 2, topic: "health" },
-    { id: 75, word: "symptom", ipa: "/ˈsɪmptəm/", pronunciation: "sím-tầm", meaning: "triệu chứng", pos: ["noun"], example: "Fever is a common symptom of the flu.", exampleTranslation: "Sốt là một triệu chứng phổ biến của bệnh cúm.", level: "B1", day: 2, topic: "health" },
-    // Từ vựng về công nghệ (Day 2)
-    { id: 76, word: "software", ipa: "/ˈsɒftweə(r)/", pronunciation: "sóft-weo", meaning: "phần mềm", pos: ["noun"], example: "We need to update our antivirus software.", exampleTranslation: "Chúng ta cần cập nhật phần mềm chống vi-rút của mình.", level: "A2", day: 2, topic: "technology" },
-    { id: 77, word: "database", ipa: "/ˈdeɪtəbeɪs/", pronunciation: "đây-tơ-bết", meaning: "cơ sở dữ liệu", pos: ["noun"], example: "The company stores all customer information in a secure database.", exampleTranslation: "Công ty lưu trữ tất cả thông tin khách hàng trong một cơ sở dữ liệu an toàn.", level: "B1", day: 2, topic: "technology" },
-    { id: 78, word: "algorithm", ipa: "/ˈælɡərɪðəm/", pronunciation: "eo-gơ-ri-thầm", meaning: "thuật toán", pos: ["noun"], example: "The search engine uses a complex algorithm to rank results.", exampleTranslation: "Công cụ tìm kiếm sử dụng một thuật toán phức tạp để xếp hạng kết quả.", level: "B2", day: 2, topic: "technology" },
-    { id: 79, word: "application", ipa: "/ˌæplɪˈkeɪʃn/", pronunciation: "ép-pli-kây-sần", meaning: "ứng dụng, đơn xin", pos: ["noun"], example: "I downloaded a new application for learning languages.", exampleTranslation: "Tôi đã tải xuống một ứng dụng mới để học ngôn ngữ.", level: "A2", day: 2, topic: "technology" },
-    { id: 80, word: "network", ipa: "/ˈnetwɜːk/", pronunciation: "nét-go-k", meaning: "mạng lưới, mạng máy tính", pos: ["noun"], example: "The company has a global network of suppliers.", exampleTranslation: "Công ty có một mạng lưới nhà cung cấp toàn cầu.", level: "A2", day: 2, topic: "technology" },
-    { id: 81, word: "will", ipa: "/wɪl/", pronunciation: "uy-ồ", meaning: "sẽ (trợ động từ), ý chí", pos: ["auxiliary verb", "noun"], example: "I will call you tomorrow.", exampleTranslation: "Tôi sẽ gọi cho bạn vào ngày mai.", level: "A1", day: 2, topic: "daily" },
-    { id: 82, word: "many", ipa: "/ˈmeni/", pronunciation: "me-ni", meaning: "nhiều", pos: ["adjective", "pronoun"], example: "How many apples do you want?", exampleTranslation: "Bạn muốn bao nhiêu quả táo?", level: "A1", day: 2, topic: "daily" },
-    { id: 83, word: "then", ipa: "/ðen/", pronunciation: "then", meaning: "sau đó, rồi thì", pos: ["adverb"], example: "We had dinner, then we watched a movie.", exampleTranslation: "Chúng tôi ăn tối, sau đó chúng tôi xem một bộ phim.", level: "A1", day: 2, topic: "daily" },
-    { id: 84, word: "them", ipa: "/ðəm/", pronunciation: "thầm", meaning: "họ, chúng (tân ngữ)", pos: ["pronoun"], example: "I know them very well.", exampleTranslation: "Tôi biết họ rất rõ.", level: "A1", day: 2, topic: "daily" },
-    { id: 85, word: "these", ipa: "/ðiːz/", pronunciation: "thi-z", meaning: "những cái/những người này", pos: ["determiner", "pronoun"], example: "These books are mine.", exampleTranslation: "Những cuốn sách này là của tôi.", level: "A1", day: 2, topic: "daily" },
-    { id: 86, word: "so", ipa: "/səʊ/", pronunciation: "xô", meaning: "vì vậy, rất", pos: ["adverb", "conjunction"], example: "It was raining, so we stayed home.", exampleTranslation: "Trời đang mưa, vì vậy chúng tôi ở nhà.", level: "A1", day: 2, topic: "daily" },
-    { id: 87, word: "some", ipa: "/səm/", pronunciation: "xầm", meaning: "một vài, một ít", pos: ["determiner", "pronoun"], example: "Can I have some water, please?", exampleTranslation: "Làm ơn cho tôi một ít nước được không?", level: "A1", day: 2, topic: "daily" },
-    { id: 88, word: "her", ipa: "/hə(r)/", pronunciation: "hơ", meaning: "cô ấy, bà ấy (tân ngữ/tính từ sở hữu)", pos: ["pronoun", "determiner"], example: "I gave her a present. That is her book.", exampleTranslation: "Tôi đã tặng cô ấy một món quà. Đó là sách của cô ấy.", level: "A1", day: 2, topic: "daily" },
-    { id: 89, word: "would", ipa: "/wʊd/", pronunciation: "u-đ", meaning: "sẽ (quá khứ của will, dùng trong câu giả định)", pos: ["auxiliary verb"], example: "I would like a cup of tea.", exampleTranslation: "Tôi muốn một tách trà.", level: "A2", day: 2, topic: "daily" },
-    { id: 90, word: "make", ipa: "/meɪk/", pronunciation: "mếch", meaning: "làm, chế tạo", pos: ["verb"], example: "She makes delicious cakes.", exampleTranslation: "Cô ấy làm những chiếc bánh ngon tuyệt.", level: "A1", day: 2, topic: "daily" },
-    { id: 91, word: "like", ipa: "/laɪk/", pronunciation: "lai-k", meaning: "như, thích", pos: ["preposition", "verb"], example: "She sings like an angel. I like chocolate.", exampleTranslation: "Cô ấy hát như một thiên thần. Tôi thích sô cô la.", level: "A1", day: 2, topic: "daily" },
-    { id: 92, word: "him", ipa: "/hɪm/", pronunciation: "him", meaning: "anh ấy, ông ấy (tân ngữ)", pos: ["pronoun"], example: "I saw him yesterday.", exampleTranslation: "Tôi đã gặp anh ấy hôm qua.", level: "A1", day: 2, topic: "daily" },
-    { id: 93, word: "into", ipa: "/ˈɪntə/", pronunciation: "in-tơ", meaning: "vào trong", pos: ["preposition"], example: "She walked into the room.", exampleTranslation: "Cô ấy bước vào phòng.", level: "A1", day: 2, topic: "daily" },
-    { id: 94, word: "time", ipa: "/taɪm/", pronunciation: "thai-m", meaning: "thời gian, lần", pos: ["noun"], example: "Time flies when you're having fun.", exampleTranslation: "Thời gian trôi nhanh khi bạn đang vui vẻ.", level: "A1", day: 2, topic: "daily" },
-    { id: 95, word: "has", ipa: "/həz/", pronunciation: "hớt-z", meaning: "có (ngôi thứ ba số ít của have)", pos: ["verb"], example: "He has a new car.", exampleTranslation: "Anh ấy có một chiếc xe mới.", level: "A1", day: 2, topic: "daily" },
-    { id: 96, word: "look", ipa: "/lʊk/", pronunciation: "lúc", meaning: "nhìn, trông có vẻ", pos: ["verb", "noun"], example: "Look at that beautiful sunset!", exampleTranslation: "Hãy nhìn hoàng hôn tuyệt đẹp kia!", level: "A1", day: 2, topic: "daily" },
-    { id: 97, word: "two", ipa: "/tuː/", pronunciation: "tu", meaning: "số hai", pos: ["number"], example: "I have two sisters.", exampleTranslation: "Tôi có hai chị gái.", level: "A1", day: 2, topic: "daily" },
-    { id: 98, word: "more", ipa: "/mɔː(r)/", pronunciation: "mo", meaning: "hơn, nhiều hơn", pos: ["determiner", "adverb"], example: "I need more time to finish.", exampleTranslation: "Tôi cần nhiều thời gian hơn để hoàn thành.", level: "A1", day: 2, topic: "daily" },
-    { id: 99, word: "write", ipa: "/raɪt/", pronunciation: "rai-t", meaning: "viết", pos: ["verb"], example: "Please write your name here.", exampleTranslation: "Vui lòng viết tên của bạn ở đây.", level: "A1", day: 2, topic: "daily" },
-    { id: 100, word: "go", ipa: "/ɡəʊ/", pronunciation: "gâu", meaning: "đi", pos: ["verb"], example: "I go to the market every Sunday.", exampleTranslation: "Tôi đi chợ mỗi Chủ Nhật.", level: "A1", day: 2, topic: "daily" },
-
-    // ========== DAY 3 - 60 (Tiếp tục mẫu tương tự) ==========
-    // (Do giới hạn độ dài, tôi sẽ liệt kê các từ khóa chính cho các ngày còn lại và cung cấp đầy đủ 10-20 từ đầu tiên của Day 3 để làm mẫu. Bạn có thể dựa vào mẫu này để tự mở rộng đến 3000 từ.)
-    // **Mẫu cho Day 3:**
-    { id: 101, word: "see", ipa: "/siː/", pronunciation: "xi", meaning: "nhìn thấy, xem", pos: ["verb"], example: "I can see a bird in the tree.", exampleTranslation: "Tôi có thể nhìn thấy một con chim trên cây.", level: "A1", day: 3, topic: "daily" },
-    { id: 102, word: "number", ipa: "/ˈnʌmbə(r)/", pronunciation: "năm-bơ", meaning: "số, con số", pos: ["noun"], example: "What is your phone number?", exampleTranslation: "Số điện thoại của bạn là gì?", level: "A1", day: 3, topic: "daily" },
-    { id: 103, word: "way", ipa: "/weɪ/", pronunciation: "uây", meaning: "con đường, cách thức", pos: ["noun"], example: "Can you tell me the way to the station?", exampleTranslation: "Bạn có thể chỉ cho tôi đường đến nhà ga không?", level: "A1", day: 3, topic: "daily" },
-    { id: 104, word: "could", ipa: "/kʊd/", pronunciation: "cút", meaning: "có thể (quá khứ của can)", pos: ["auxiliary verb"], example: "Could you help me, please?", exampleTranslation: "Bạn có thể giúp tôi được không?", level: "A1", day: 3, topic: "daily" },
-    { id: 105, word: "people", ipa: "/ˈpiːpl/", pronunciation: "pi-pần", meaning: "người, mọi người", pos: ["noun"], example: "Many people visit this park every day.", exampleTranslation: "Nhiều người đến thăm công viên này mỗi ngày.", level: "A1", day: 3, topic: "society" },
-    { id: 106, word: "my", ipa: "/maɪ/", pronunciation: "mai", meaning: "của tôi", pos: ["determiner"], example: "This is my house.", exampleTranslation: "Đây là nhà của tôi.", level: "A1", day: 3, topic: "daily" },
-    { id: 107, word: "than", ipa: "/ðən/", pronunciation: "thần", meaning: "hơn", pos: ["conjunction", "preposition"], example: "She is taller than her brother.", exampleTranslation: "Cô ấy cao hơn anh trai của cô ấy.", level: "A1", day: 3, topic: "daily" },
-    { id: 108, word: "first", ipa: "/fɜːst/", pronunciation: "phớt-s-t", meaning: "đầu tiên, thứ nhất", pos: ["number", "adverb"], example: "This is my first time in London.", exampleTranslation: "Đây là lần đầu tiên của tôi ở Luân Đôn.", level: "A1", day: 3, topic: "daily" },
-    { id: 109, word: "water", ipa: "/ˈwɔːtə(r)/", pronunciation: "go-tơ", meaning: "nước", pos: ["noun", "verb"], example: "I drink a lot of water every day.", exampleTranslation: "Tôi uống nhiều nước mỗi ngày.", level: "A1", day: 3, topic: "food" },
-    { id: 110, word: "been", ipa: "/biːn/", pronunciation: "bin", meaning: "đã (phân từ 2 của be)", pos: ["verb"], example: "I have been to Paris twice.", exampleTranslation: "Tôi đã đến Paris hai lần.", level: "A1", day: 3, topic: "daily" },
-    { id: 111, word: "call", ipa: "/kɔːl/", pronunciation: "co", meaning: "gọi, cuộc gọi", pos: ["verb", "noun"], example: "I will call you later.", exampleTranslation: "Tôi sẽ gọi cho bạn sau.", level: "A1", day: 3, topic: "daily" },
-    { id: 112, word: "who", ipa: "/huː/", pronunciation: "hu", meaning: "ai, người mà", pos: ["pronoun"], example: "Who is that person?", exampleTranslation: "Người đó là ai?", level: "A1", day: 3, topic: "daily" },
-    { id: 113, word: "oil", ipa: "/ɔɪl/", pronunciation: "oi-ồ", meaning: "dầu", pos: ["noun"], example: "Olive oil is good for health.", exampleTranslation: "Dầu ô liu tốt cho sức khỏe.", level: "A1", day: 3, topic: "food" },
-    { id: 114, word: "its", ipa: "/ɪts/", pronunciation: "ít-s", meaning: "của nó", pos: ["determiner"], example: "The dog wagged its tail.", exampleTranslation: "Con chó vẫy đuôi của nó.", level: "A1", day: 3, topic: "daily" },
-    { id: 115, word: "now", ipa: "/naʊ/", pronunciation: "nao", meaning: "bây giờ", pos: ["adverb"], example: "I'm busy now.", exampleTranslation: "Bây giờ tôi đang bận.", level: "A1", day: 3, topic: "daily" },
-    { id: 116, word: "find", ipa: "/faɪnd/", pronunciation: "phai-n-đ", meaning: "tìm thấy", pos: ["verb"], example: "I can't find my keys.", exampleTranslation: "Tôi không thể tìm thấy chìa khóa của mình.", level: "A1", day: 3, topic: "daily" },
-    { id: 117, word: "long", ipa: "/lɒŋ/", pronunciation: "long", meaning: "dài, lâu", pos: ["adjective", "adverb"], example: "The river is very long.", exampleTranslation: "Con sông rất dài.", level: "A1", day: 3, topic: "daily" },
-    { id: 118, word: "down", ipa: "/daʊn/", pronunciation: "đao-n", meaning: "xuống, phía dưới", pos: ["adverb", "preposition"], example: "Sit down, please.", exampleTranslation: "Xin mời ngồi xuống.", level: "A1", day: 3, topic: "daily" },
-    { id: 119, word: "day", ipa: "/deɪ/", pronunciation: "đây", meaning: "ngày", pos: ["noun"], example: "There are seven days in a week.", exampleTranslation: "Có bảy ngày trong một tuần.", level: "A1", day: 3, topic: "daily" },
-    { id: 120, word: "did", ipa: "/dɪd/", pronunciation: "đít", meaning: "đã làm (quá khứ của do)", pos: ["verb"], example: "Did you finish your homework?", exampleTranslation: "Bạn đã làm xong bài tập về nhà chưa?", level: "A1", day: 3, topic: "daily" },
-    { id: 121, word: "come", ipa: "/kʌm/", pronunciation: "căm", meaning: "đến", pos: ["verb"], example: "Come here, please.", exampleTranslation: "Làm ơn đến đây.", level: "A1", day: 3, topic: "daily" },
-    { id: 122, word: "may", ipa: "/meɪ/", pronunciation: "mây", meaning: "có thể, tháng Năm", pos: ["auxiliary verb", "noun"], example: "It may rain tomorrow.", exampleTranslation: "Ngày mai trời có thể mưa.", level: "A2", day: 3, topic: "daily" },
-    { id: 123, word: "part", ipa: "/pɑːt/", pronunciation: "pat", meaning: "phần, bộ phận", pos: ["noun", "verb"], example: "Which part of the movie did you like best?", exampleTranslation: "Bạn thích phần nào nhất của bộ phim?", level: "A2", day: 3, topic: "daily" },
-    // ... Tiếp tục thêm các từ cho đến hết Day 3 (khoảng 50 từ)
-
-    // **Gợi ý từ vựng cho các ngày tiếp theo (cần mở rộng):**
-    // Day 4-10: Các từ A1-A2 cơ bản về gia đình, nhà cửa, thành phố, giao thông, nghề nghiệp, cảm xúc, thời tiết, động vật, thực vật, quần áo, màu sắc.
-    // Day 11-20: Các từ B1 về giáo dục, du lịch, môi trường, sức khỏe, thể thao, giải trí, nghệ thuật, phương tiện truyền thông.
-    // Day 21-30: Các từ B2 về kinh tế, chính trị, pháp luật, khoa học, tâm lý, triết học, công nghệ cao.
-    // Day 31-40: Các từ C1-C2 chuyên sâu, học thuật, từ vựng nâng cao cho nhiều lĩnh vực.
-    // Day 41-50: Ôn tập và bổ sung từ đồng nghĩa, trái nghĩa, cụm từ cố định (phrasal verbs, idioms).
-    // Day 51-61: Từ vựng theo chủ đề đặc thù (y tế, kỹ thuật, kinh doanh quốc tế, văn hóa...).
-
-    // ========== CÁC TỪ CẤP CAO (Mẫu từ Day 31 trở đi - như trong dữ liệu gốc) ==========
-    { id: 3001, word: "entrepreneur", ipa: "/ˌɒntrəprəˈnɜː(r)/", pronunciation: "on-trơ-prơ-nớ", meaning: "doanh nhân", pos: ["noun"], example: "She is a successful entrepreneur who started her own company.", exampleTranslation: "Cô ấy là một doanh nhân thành đạt đã thành lập công ty riêng của mình.", level: "C1", day: 31, topic: "business" },
-    { id: 3002, word: "environment", ipa: "/ɪnˈvaɪrənmənt/", pronunciation: "in-vai-rần-mần", meaning: "môi trường", pos: ["noun"], example: "We need to protect the environment for future generations.", exampleTranslation: "Chúng ta cần bảo vệ môi trường cho các thế hệ tương lai.", level: "B1", day: 31, topic: "nature" },
-    { id: 3003, word: "evolution", ipa: "/ˌiːvəˈluːʃn/", pronunciation: "i-vơ-lú-sần", meaning: "sự tiến hóa", pos: ["noun"], example: "The theory of evolution explains how species change over time.", exampleTranslation: "Thuyết tiến hóa giải thích cách các loài thay đổi theo thời gian.", level: "C1", day: 31, topic: "education" },
-    { id: 3004, word: "extraordinary", ipa: "/ɪkˈstrɔːdnri/", pronunciation: "éc-x-tró-đờ-nơ-ri", meaning: "phi thường, đặc biệt", pos: ["adjective"], example: "She showed extraordinary courage in facing the challenge.", exampleTranslation: "Cô ấy đã thể hiện lòng can đảm phi thường khi đối mặt với thách thức.", level: "B2", day: 32, topic: "daily" },
-    { id: 3005, word: "facilitate", ipa: "/fəˈsɪlɪteɪt/", pronunciation: "phơ-sí-li-tết", meaning: "tạo điều kiện, hỗ trợ", pos: ["verb"], example: "The new software will facilitate communication between departments.", exampleTranslation: "Phần mềm mới sẽ tạo điều kiện thuận lợi cho việc giao tiếp giữa các phòng ban.", level: "C1", day: 32, topic: "technology" },
-    { id: 3006, word: "globalization", ipa: "/ˌɡləʊbəlaɪˈzeɪʃn/", pronunciation: "glô-bơ-lai-dê-sần", meaning: "toàn cầu hóa", pos: ["noun"], example: "Globalization has increased economic interdependence between countries.", exampleTranslation: "Toàn cầu hóa đã làm tăng sự phụ thuộc kinh tế giữa các quốc gia.", level: "C1", day: 33, topic: "business" },
-    { id: 3007, word: "hypothesis", ipa: "/haɪˈpɒθəsɪs/", pronunciation: "hai-pó-thơ-sis", meaning: "giả thuyết", pos: ["noun"], example: "Scientists tested their hypothesis through careful experiments.", exampleTranslation: "Các nhà khoa học đã kiểm tra giả thuyết của họ thông qua các thí nghiệm cẩn thận.", level: "C1", day: 33, topic: "education" },
-    { id: 3008, word: "infrastructure", ipa: "/ˈɪnfrəstrʌktʃə(r)/", pronunciation: "in-phrơ-xtrăc-chơ", meaning: "cơ sở hạ tầng", pos: ["noun"], example: "The government is investing in infrastructure development.", exampleTranslation: "Chính phủ đang đầu tư vào phát triển cơ sở hạ tầng.", level: "C1", day: 34, topic: "society" },
-    { id: 3009, word: "innovative", ipa: "/ˈɪnəveɪtɪv/", pronunciation: "i-nô-vây-tiv", meaning: "đổi mới, sáng tạo", pos: ["adjective"], example: "The company is known for its innovative products.", exampleTranslation: "Công ty được biết đến với các sản phẩm đổi mới của mình.", level: "B2", day: 34, topic: "technology" },
-    { id: 3010, word: "integrate", ipa: "/ˈɪntɪɡreɪt/", pronunciation: "in-ti-grết", meaning: "tích hợp, hòa nhập", pos: ["verb"], example: "We need to integrate new technology into our existing systems.", exampleTranslation: "Chúng ta cần tích hợp công nghệ mới vào các hệ thống hiện có của mình.", level: "B2", day: 35, topic: "technology" },
-    { id: 3011, word: "phenomenon", ipa: "/fəˈnɒmɪnən/", pronunciation: "phơ-nó-mi-nần", meaning: "hiện tượng", pos: ["noun"], example: "The Northern Lights are a natural phenomenon.", exampleTranslation: "Cực quang là một hiện tượng tự nhiên.", level: "B2", day: 61, topic: "nature" },
-    { id: 3012, word: "quintessential", ipa: "/ˌkwɪntɪˈsenʃl/", pronunciation: "quyn-ti-xen-sần", meaning: "tinh túy, bản chất nhất", pos: ["adjective"], example: "The little black dress is the quintessential fashion item.", exampleTranslation: "Chiếc váy đen nhỏ là món đồ thời trang tinh túy nhất.", level: "C2", day: 61, topic: "arts" },
-    { id: 3013, word: "resilient", ipa: "/rɪˈzɪliənt/", pronunciation: "ri-dí-li-ần", meaning: "kiên cường, đàn hồi", pos: ["adjective"], example: "Children are often more resilient than adults think.", exampleTranslation: "Trẻ em thường kiên cường hơn người lớn nghĩ.", level: "C1", day: 62, topic: "daily" },
-    { id: 3014, word: "sustainable", ipa: "/səˈsteɪnəbl/", pronunciation: "sớt-x-tây-nơ-bần", meaning: "bền vững", pos: ["adjective"], example: "We need to find sustainable energy sources.", exampleTranslation: "Chúng ta cần tìm các nguồn năng lượng bền vững.", level: "B2", day: 62, topic: "nature" },
-    { id: 3015, word: "ubiquitous", ipa: "/juːˈbɪkwɪtəs/", pronunciation: "iu-bí-quy-tớt-s", meaning: "có mặt ở khắp nơi", pos: ["adjective"], example: "Mobile phones have become ubiquitous in modern society.", exampleTranslation: "Điện thoại di động đã trở nên có mặt ở khắp nơi trong xã hội hiện đại.", level: "C2", day: 63, topic: "technology" },
-    // ... (Thêm các từ C1-C2 khác để đạt đủ 3000 từ)
-];
-        // Mở rộng dữ liệu để có 3000 từ (trong thực tế sẽ cần thêm nhiều từ hơn)
-        // Đây chỉ là ví dụ với 70 từ, trong ứng dụng thực tế cần thêm 2930 từ nữa
-        
-        // Biến toàn cục
-        let currentPage = 1;
-        const itemsPerPage = 25;
-        let filteredData = [...vocabularyData];
-        let learnedWords = JSON.parse(localStorage.getItem('learnedWords')) || [];
-        
-        // Khởi tạo ứng dụng
-        function initApp() {
-            renderVocabularyTable();
-            setupEventListeners();
-            updateStats();
-            renderPagination();
-        }
-        
-        // Render bảng từ vựng
-        function renderVocabularyTable() {
-            const tableBody = document.getElementById('vocabulary-body');
-            tableBody.innerHTML = '';
-            
-            const startIndex = (currentPage - 1) * itemsPerPage;
-            const endIndex = startIndex + itemsPerPage;
-            const pageData = filteredData.slice(startIndex, endIndex);
-            
-            if (pageData.length === 0) {
-                tableBody.innerHTML = `
-                    <tr>
-                        <td colspan="10" style="text-align: center; padding: 50px; color: var(--text-secondary);">
-                            <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 20px; display: block;"></i>
-                            <h3 style="margin-bottom: 10px;">Không tìm thấy từ vựng phù hợp</h3>
-                            <p>Hãy thử thay đổi bộ lọc hoặc từ khóa tìm kiếm</p>
-                        </td>
-                    </tr>
-                `;
-                return;
-            }
-            
-            pageData.forEach(item => {
-                const row = document.createElement('tr');
-                if (learnedWords.includes(item.id)) {
-                    row.classList.add('learned');
-                }
+        // Thêm hiệu ứng tương tác cho các liên kết
+        document.addEventListener('DOMContentLoaded', function() {
+            // Thêm hiệu ứng hover cho tất cả các liên kết điều hướng
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px)';
+                });
                 
-                // Lấy tên chủ đề
-                const topicNames = {
-                    daily: "Hàng ngày",
-                    family: "Gia đình",
-                    food: "Ẩm thực",
-                    work: "Công việc",
-                    education: "Giáo dục",
-                    travel: "Du lịch",
-                    health: "Sức khỏe",
-                    business: "Kinh doanh",
-                    technology: "Công nghệ",
-                    nature: "Thiên nhiên",
-                    arts: "Nghệ thuật",
-                    sports: "Thể thao",
-                    finance: "Tài chính",
-                    society: "Xã hội"
-                };
+                link.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Thêm hiệu ứng cho các card
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-12px)';
+                });
                 
-                // Tạo thẻ từ loại
-                let posTags = '';
-                item.pos.forEach(pos => {
-                    let posClass = 'pos-other';
-                    if (pos === 'noun') posClass = 'pos-noun';
-                    else if (pos === 'verb') posClass = 'pos-verb';
-                    else if (pos === 'adjective') posClass = 'pos-adj';
-                    else if (pos === 'adverb') posClass = 'pos-adv';
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Thêm hiệu ứng click cho các liên kết chính
+            const mainLinks = document.querySelectorAll('.feature-link');
+            mainLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
                     
-                    posTags += `<span class="pos-tag ${posClass}">${pos}</span>`;
-                });
-                
-                row.innerHTML = `
-                    <td>${item.id}</td>
-                    <td class="word-cell">
-                        ${item.word}
-                        <button class="audio-btn" data-word="${item.word}" title="Phát âm">
-                            <i class="fas fa-volume-up"></i>
-                        </button>
-                    </td>
-                    <td class="ipa-cell">${item.ipa}</td>
-                    <td class="pronunciation-cell">${item.pronunciation}</td>
-                    <td class="meaning-cell">${item.meaning}</td>
-                    <td>${posTags}</td>
-                    <td class="example-cell">
-                        ${item.example}
-                        <span class="example-translation">${item.exampleTranslation}</span>
-                    </td>
-                    <td><span class="level-badge level-${item.level.toLowerCase()}">${item.level}</span></td>
-                    <td><span class="day-badge">${item.day}</span></td>
-                    <td><span class="topic-tag">${topicNames[item.topic] || item.topic}</span></td>
-                `;
-                
-                // Thêm sự kiện click để đánh dấu đã học
-                row.addEventListener('click', (e) => {
-                    if (!e.target.closest('.audio-btn')) {
-                        toggleLearned(item.id);
-                    }
-                });
-                
-                // Thêm sự kiện cho nút phát âm
-                const audioBtn = row.querySelector('.audio-btn');
-                audioBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    speakWord(item.word);
-                });
-                
-                tableBody.appendChild(row);
-            });
-        }
-        
-        // Phát âm từ (sử dụng Web Speech API)
-        function speakWord(word) {
-            if ('speechSynthesis' in window) {
-                const utterance = new SpeechSynthesisUtterance(word);
-                utterance.lang = 'en-US';
-                utterance.rate = 0.08;
-                speechSynthesis.speak(utterance);
-            } else {
-                alert('Trình duyệt của bạn không hỗ trợ chức năng phát âm. Vui lòng sử dụng Chrome hoặc Edge.');
-            }
-        }
-        
-        // Đánh dấu từ đã học
-        function toggleLearned(wordId) {
-            const index = learnedWords.indexOf(wordId);
-            if (index === -1) {
-                learnedWords.push(wordId);
-            } else {
-                learnedWords.splice(index, 1);
-            }
-            
-            // Lưu vào localStorage
-            localStorage.setItem('learnedWords', JSON.stringify(learnedWords));
-            
-            // Cập nhật giao diện
-            renderVocabularyTable();
-            updateStats();
-        }
-        
-        // Cập nhật thống kê
-        function updateStats() {
-            const learnedCount = learnedWords.length;
-            const totalCount = vocabularyData.length;
-            
-            document.getElementById('learned-words').textContent = learnedCount;
-            document.getElementById('total-words').textContent = totalCount;
-        }
-        
-        // Lọc dữ liệu
-        function filterData() {
-            const topicFilter = document.getElementById('topic-filter').value;
-            const levelFilter = document.getElementById('level-filter').value;
-            const posFilter = document.getElementById('pos-filter').value;
-            const searchInput = document.getElementById('search-input').value.toLowerCase();
-            const activeDayFilter = document.querySelector('#day-filter .filter-option.active').dataset.day;
-            
-            filteredData = vocabularyData.filter(item => {
-                // Lọc theo chủ đề
-                if (topicFilter !== 'all' && item.topic !== topicFilter) return false;
-                
-                // Lọc theo cấp độ
-                if (levelFilter !== 'all' && item.level !== levelFilter) return false;
-                
-                // Lọc theo từ loại
-                if (posFilter !== 'all' && !item.pos.includes(posFilter)) return false;
-                
-                // Lọc theo ngày
-                if (activeDayFilter !== 'all') {
-                    const [start, end] = activeDayFilter.split('-').map(Number);
-                    if (item.day < start || item.day > end) return false;
-                }
-                
-                // Lọc theo tìm kiếm
-                if (searchInput) {
-                    const searchTerms = [
-                        item.word.toLowerCase(),
-                        item.ipa.toLowerCase(),
-                        item.pronunciation.toLowerCase(),
-                        item.meaning.toLowerCase(),
-                        item.example.toLowerCase(),
-                        item.exampleTranslation.toLowerCase()
-                    ];
-                    
-                    if (!searchTerms.some(term => term.includes(searchInput))) {
-                        return false;
-                    }
-                }
-                
-                return true;
-            });
-            
-            currentPage = 1;
-            renderVocabularyTable();
-            renderPagination();
-        }
-        
-        // Render phân trang
-        function renderPagination() {
-            const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-            const pageNumbersContainer = document.getElementById('page-numbers');
-            const prevBtn = document.getElementById('prev-page');
-            const nextBtn = document.getElementById('next-page');
-            
-            // Cập nhật trạng thái nút
-            prevBtn.disabled = currentPage === 1;
-            nextBtn.disabled = currentPage === totalPages || totalPages === 0;
-            
-            // Tạo số trang
-            pageNumbersContainer.innerHTML = '';
-            
-            // Hiển thị tối đa 5 trang
-            let startPage = Math.max(1, currentPage - 2);
-            let endPage = Math.min(totalPages, startPage + 4);
-            
-            // Điều chỉnh nếu gần cuối
-            if (endPage - startPage < 4 && startPage > 1) {
-                startPage = Math.max(1, endPage - 4);
-            }
-            
-            for (let i = startPage; i <= endPage; i++) {
-                const pageNumber = document.createElement('div');
-                pageNumber.className = 'page-number';
-                if (i === currentPage) pageNumber.classList.add('active');
-                pageNumber.textContent = i;
-                pageNumber.addEventListener('click', () => {
-                    currentPage = i;
-                    renderVocabularyTable();
-                    renderPagination();
-                });
-                pageNumbersContainer.appendChild(pageNumber);
-            }
-            
-            // Hiển thị tổng số trang nếu cần
-            if (totalPages > endPage) {
-                const ellipsis = document.createElement('div');
-                ellipsis.className = 'page-number';
-                ellipsis.textContent = '...';
-                ellipsis.style.cursor = 'default';
-                pageNumbersContainer.appendChild(ellipsis);
-                
-                const lastPage = document.createElement('div');
-                lastPage.className = 'page-number';
-                lastPage.textContent = totalPages;
-                lastPage.addEventListener('click', () => {
-                    currentPage = totalPages;
-                    renderVocabularyTable();
-                    renderPagination();
-                });
-                pageNumbersContainer.appendChild(lastPage);
-            }
-        }
-        
-        // Thiết lập sự kiện
-        function setupEventListeners() {
-            // Bộ lọc
-            document.getElementById('topic-filter').addEventListener('change', filterData);
-            document.getElementById('level-filter').addEventListener('change', filterData);
-            document.getElementById('pos-filter').addEventListener('change', filterData);
-            document.getElementById('search-input').addEventListener('input', filterData);
-            
-            // Lọc theo ngày
-            document.querySelectorAll('#day-filter .filter-option').forEach(option => {
-                option.addEventListener('click', function() {
-                    document.querySelectorAll('#day-filter .filter-option').forEach(opt => {
-                        opt.classList.remove('active');
-                    });
-                    this.classList.add('active');
-                    filterData();
+                    // Tạo hiệu ứng click
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1.05)';
+                        
+                        // Chuyển hướng sau hiệu ứng
+                        setTimeout(() => {
+                            window.location.href = this.getAttribute('href');
+                        }, 150);
+                    }, 100);
                 });
             });
-            
-            // Nút phân trang
-            document.getElementById('prev-page').addEventListener('click', () => {
-                if (currentPage > 1) {
-                    currentPage--;
-                    renderVocabularyTable();
-                    renderPagination();
-                }
-            });
-            
-            document.getElementById('next-page').addEventListener('click', () => {
-                const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-                if (currentPage < totalPages) {
-                    currentPage++;
-                    renderVocabularyTable();
-                    renderPagination();
-                }
-            });
-            
-            // Nút hành động
-            document.getElementById('mark-learned').addEventListener('click', () => {
-                const startIndex = (currentPage - 1) * itemsPerPage;
-                const endIndex = startIndex + itemsPerPage;
-                const pageData = filteredData.slice(startIndex, endIndex);
-                
-                pageData.forEach(item => {
-                    if (!learnedWords.includes(item.id)) {
-                        learnedWords.push(item.id);
-                    }
-                });
-                
-                localStorage.setItem('learnedWords', JSON.stringify(learnedWords));
-                renderVocabularyTable();
-                updateStats();
-            });
-            
-            document.getElementById('reset-progress').addEventListener('click', () => {
-                if (confirm('Bạn có chắc chắn muốn đặt lại tiến độ học tập? Tất cả các từ đã đánh dấu sẽ bị xóa.')) {
-                    learnedWords = [];
-                    localStorage.setItem('learnedWords', JSON.stringify(learnedWords));
-                    renderVocabularyTable();
-                    updateStats();
-                }
-            });
-            
-            document.getElementById('export-btn').addEventListener('click', () => {
-                exportData();
-            });
-        }
-        
-        // Xuất dữ liệu
-        function exportData() {
-            const dataToExport = filteredData.map(item => ({
-                ID: item.id,
-                Từ: item.word,
-                "Phiên âm IPA": item.ipa,
-                "Phát âm": item.pronunciation,
-                "Nghĩa tiếng Việt": item.meaning,
-                "Từ loại": item.pos.join(', '),
-                "Ví dụ": item.example,
-                "Dịch ví dụ": item.exampleTranslation,
-                "Cấp độ": item.level,
-                "Ngày": item.day,
-                "Chủ đề": item.topic,
-                "Đã học": learnedWords.includes(item.id) ? "Có" : "Không"
-            }));
-            
-            // Tạo CSV
-            const headers = Object.keys(dataToExport[0]).join(',');
-            const rows = dataToExport.map(item => Object.values(item).map(value => `"${value}"`).join(','));
-            const csvContent = [headers, ...rows].join('\n');
-            
-            // Tạo file và tải xuống
-            const blob = new Blob(['\ufeff' + csvContent], { type: 'text/csv;charset=utf-8;' });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = `tu-vung-tieng-anh-${new Date().toISOString().slice(0,10)}.csv`;
-            link.click();
-            
-            alert(`Đã xuất ${dataToExport.length} từ vựng thành file CSV.`);
-        }
-        
-        // Khởi chạy ứng dụng khi trang đã tải xong
-        document.addEventListener('DOMContentLoaded', initApp);
+        });
     </script>
 </body>
 </html>
