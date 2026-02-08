@@ -2,919 +2,864 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Website Học Tiếng Anh</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Học Từ Vựng Tiếng Anh 3000 Từ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Reset và base styles */
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #f72585;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --success-color: #4cc9f0;
+            --border-radius: 12px;
+            --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-        
-        body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f5f7fa;
-            overflow-x: hidden;
         }
-        
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--dark-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-bottom: 60px;
+        }
+
         .container {
-            width: 100%;
-            padding: 0 15px;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 20px;
         }
-        
-        /* Header */
-        .header {
-            background: linear-gradient(135deg, #4a6fa5, #166088);
-            color: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        
-        .logo i {
-            font-size: 1.8rem;
-        }
-        
-        .menu-toggle {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        
-        .menu-toggle:hover {
-            background-color: rgba(255,255,255,0.1);
-        }
-        
-        /* Navigation Menu */
-        .nav-menu {
-            background-color: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            position: fixed;
-            top: 70px;
-            left: -100%;
-            width: 80%;
-            height: calc(100vh - 70px);
-            z-index: 99;
-            transition: left 0.3s ease;
-            overflow-y: auto;
-        }
-        
-        .nav-menu.active {
-            left: 0;
-        }
-        
-        .nav-menu ul {
-            list-style: none;
-            padding: 20px 0;
-        }
-        
-        .nav-menu li {
-            border-bottom: 1px solid #eee;
-        }
-        
-        .nav-menu a {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 18px 20px;
-            color: #333;
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-        }
-        
-        .nav-menu a:hover,
-        .nav-menu a.active {
-            background-color: #f0f7ff;
-            color: #166088;
-        }
-        
-        .nav-menu i {
-            width: 24px;
+
+        header {
             text-align: center;
-        }
-        
-        /* Main Content */
-        .main-content {
-            min-height: calc(100vh - 70px);
-            padding: 20px 0;
-        }
-        
-        /* Loading spinner */
-        .loading {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 300px;
-            color: #4a6fa5;
-            font-size: 1.2rem;
-        }
-        
-        .loading i {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-        
-        /* Page content styles */
-        .page-content {
-            animation: fadeIn 0.5s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .page-header {
-            background: linear-gradient(135deg, #4a6fa5, #166088);
+            padding: 30px 0;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: 25px 20px;
-            border-radius: 10px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: var(--border-radius);
+            margin-bottom: 30px;
+            box-shadow: var(--box-shadow);
         }
-        
-        .page-header h1 {
-            font-size: 1.8rem;
+
+        header h1 {
+            font-size: 2.5rem;
             margin-bottom: 10px;
         }
-        
-        .page-header p {
+
+        header p {
+            font-size: 1.1rem;
             opacity: 0.9;
+        }
+
+        .word-count {
+            display: inline-block;
+            background-color: var(--accent-color);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 300px;
+            margin-right: 20px;
+            margin-bottom: 10px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 14px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--border-radius);
             font-size: 1rem;
+            transition: var(--transition);
         }
-        
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .filter-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            background-color: var(--light-color);
+            border: 2px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
         .card {
-            background: white;
-            border-radius: 10px;
+            background-color: white;
+            border-radius: var(--border-radius);
             padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
         }
-        
+
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
         }
-        
-        .card h2 {
-            color: #166088;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #f0f7ff;
-            font-size: 1.5rem;
-        }
-        
-        .card p {
-            color: #555;
-            margin-bottom: 15px;
-            line-height: 1.7;
-        }
-        
-        .card ul {
-            padding-left: 20px;
-            margin: 15px 0;
-        }
-        
-        .card li {
-            margin-bottom: 10px;
-            color: #555;
-        }
-        
-        .btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #4a6fa5, #166088);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 10px rgba(22, 96, 136, 0.2);
-            text-align: center;
-            margin-top: 10px;
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(22, 96, 136, 0.3);
-        }
-        
-        .btn i {
-            margin-right: 8px;
-        }
-        
-        /* Vocabulary item */
-        .vocab-item {
-            background: #f9fbff;
-            border-left: 4px solid #4a6fa5;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 0 5px 5px 0;
-        }
-        
-        .vocab-item h3 {
-            color: #166088;
-            margin-bottom: 8px;
+
+        .card-header {
             display: flex;
             justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
         }
-        
-        .vocab-item .word {
-            font-weight: bold;
-            font-size: 1.3rem;
-        }
-        
-        .vocab-item .meaning {
-            color: #333;
-            font-style: italic;
-            margin: 10px 0;
-            padding-left: 10px;
-            border-left: 2px solid #ddd;
-        }
-        
-        .vocab-item .example {
-            color: #666;
-            font-size: 0.95rem;
-            background: #f0f7ff;
-            padding: 10px;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-        
-        /* Footer */
-        .footer {
-            background: #333;
+
+        .card-number {
+            background-color: var(--primary-color);
             color: white;
-            text-align: center;
-            padding: 25px 15px;
-            margin-top: 40px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
         }
-        
-        .footer p {
+
+        .card-bookmark {
+            color: #ddd;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .card-bookmark.active {
+            color: var(--accent-color);
+        }
+
+        .card-word {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary-color);
             margin-bottom: 10px;
-            opacity: 0.8;
         }
-        
-        /* Overlay for mobile menu */
-        .overlay {
-            position: fixed;
-            top: 70px;
-            left: 0;
-            width: 100%;
-            height: calc(100vh - 70px);
-            background: rgba(0,0,0,0.5);
-            z-index: 98;
-            display: none;
+
+        .card-phonetic {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            font-style: italic;
         }
-        
-        .overlay.active {
+
+        .card-meaning {
+            background-color: #f8f9ff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--success-color);
+        }
+
+        .card-item {
+            margin-bottom: 10px;
+            display: flex;
+        }
+
+        .card-label {
+            font-weight: 600;
+            min-width: 110px;
+            color: var(--dark-color);
+        }
+
+        .card-value {
+            flex: 1;
+            color: #555;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        .loading i {
+            font-size: 2rem;
+            margin-bottom: 15px;
             display: block;
         }
-        
-        /* Breadcrumb */
-        .breadcrumb {
-            background: #f0f7ff;
+
+        .error {
+            text-align: center;
+            padding: 40px;
+            color: #d32f2f;
+            background-color: #ffebee;
+            border-radius: var(--border-radius);
+            margin: 20px 0;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .pagination-btn {
             padding: 12px 20px;
-            border-radius: 5px;
-            margin-bottom: 20px;
+            margin: 0 5px;
+            background-color: white;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .pagination-btn:hover:not(:disabled) {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .pagination-info {
+            margin: 0 15px;
+            font-weight: 600;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            grid-column: 1 / -1;
+            color: #666;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
             font-size: 0.9rem;
+            margin-top: 40px;
         }
-        
-        .breadcrumb a {
-            color: #4a6fa5;
-            text-decoration: none;
-        }
-        
-        .breadcrumb a:hover {
-            text-decoration: underline;
-        }
-        
-        .breadcrumb i {
-            margin: 0 8px;
-            font-size: 0.8rem;
-        }
-        
-        /* Responsive */
-        @media (min-width: 768px) {
-            .menu-toggle {
-                display: none;
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
             }
             
-            .nav-menu {
-                position: static;
-                width: 100%;
-                height: auto;
-                background: none;
-                box-shadow: none;
-                top: auto;
-                left: auto;
+            header h1 {
+                font-size: 2rem;
             }
             
-            .nav-menu ul {
-                display: flex;
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-box {
+                min-width: 100%;
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .card-word {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.6rem;
+            }
+            
+            .filter-section {
                 justify-content: center;
-                padding: 0;
             }
             
-            .nav-menu li {
-                border: none;
-            }
-            
-            .nav-menu a {
-                color: rgba(255,255,255,0.9);
-                padding: 10px 20px;
-                border-radius: 5px;
-                margin: 0 5px;
-            }
-            
-            .nav-menu a:hover,
-            .nav-menu a.active {
-                background-color: rgba(255,255,255,0.1);
-                color: white;
-            }
-            
-            .overlay {
-                display: none !important;
-            }
-            
-            .page-header {
-                padding: 30px;
-            }
-            
-            .page-header h1 {
-                font-size: 2.2rem;
-            }
-        }
-        
-        @media (min-width: 992px) {
-            .cards-grid {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
+            .card {
+                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <i class="fas fa-language"></i>
-                <span>Learn English</span>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-book-open"></i> Học Từ Vựng Tiếng Anh</h1>
+            <p>Nắm vững 3000 từ vựng tiếng Anh thông dụng nhất</p>
+            <div class="word-count" id="wordCount">Đang tải...</div>
+        </header>
+
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Tìm kiếm từ vựng, phiên âm hoặc nghĩa tiếng Việt...">
             </div>
-            <button class="menu-toggle" id="menuToggle">
-                <i class="fas fa-bars"></i>
+            
+            <div class="filter-section">
+                <button class="filter-btn active" data-filter="all">Tất cả</button>
+                <button class="filter-btn" data-filter="bookmarked">Đã đánh dấu</button>
+                <button class="filter-btn" data-filter="a-c">A-C</button>
+                <button class="filter-btn" data-filter="d-f">D-F</button>
+                <button class="filter-btn" data-filter="g-i">G-I</button>
+                <button class="filter-btn" data-filter="j-l">J-L</button>
+                <button class="filter-btn" data-filter="m-o">M-O</button>
+                <button class="filter-btn" data-filter="p-r">P-R</button>
+                <button class="filter-btn" data-filter="s-u">S-U</button>
+                <button class="filter-btn" data-filter="v-z">V-Z</button>
+            </div>
+        </div>
+
+        <div class="loading" id="loadingIndicator">
+            <i class="fas fa-spinner fa-spin"></i>
+            Đang tải dữ liệu từ vựng...
+        </div>
+
+        <div class="error" id="errorMessage" style="display: none;">
+            <i class="fas fa-exclamation-triangle"></i>
+            <p id="errorText">Đã xảy ra lỗi khi tải dữ liệu. Vui lòng thử lại sau.</p>
+            <button id="retryButton" style="margin-top: 15px; padding: 10px 20px; background-color: var(--primary-color); color: white; border: none; border-radius: var(--border-radius); cursor: pointer;">
+                Thử lại
             </button>
         </div>
-    </header>
 
-    <!-- Navigation Menu -->
-    <nav class="nav-menu" id="navMenu">
-        <ul>
-            <li><a href="/" data-link><i class="fas fa-home"></i> Trang chủ</a></li>
-            <li><a href="/tieng-anh.html" data-link><i class="fas fa-book"></i> Tiếng Anh</a></li>
-            <li><a href="/tu-vung.html" data-link><i class="fas fa-book-open"></i> Từ vựng</a></li>
-            <li><a href="/luyen-nghe.html" data-link><i class="fas fa-headphones"></i> Luyện nghe</a></li>
-            <li><a href="/kiem-tra.html" data-link><i class="fas fa-clipboard-check"></i> Kiểm tra</a></li>
-        </ul>
-    </nav>
-
-    <!-- Overlay for mobile menu -->
-    <div class="overlay" id="overlay"></div>
-
-    <!-- Main Content -->
-    <main class="main-content" id="mainContent">
-        <!-- Nội dung sẽ được load động vào đây -->
-        <div class="loading">
-            <i class="fas fa-spinner fa-spin"></i>
-            Đang tải trang...
+        <div class="card-container" id="wordContainer">
+            <!-- Các card từ vựng sẽ được hiển thị ở đây -->
         </div>
-    </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>© 2023 Website Học Tiếng Anh. Tất cả các quyền được bảo lưu.</p>
-            <p>Học mỗi ngày, tiến bộ mỗi ngày!</p>
+        <div class="pagination" id="pagination" style="display: none;">
+            <button class="pagination-btn" id="prevBtn" disabled>
+                <i class="fas fa-chevron-left"></i> Trang trước
+            </button>
+            <div class="pagination-info" id="pageInfo">Trang 1 / 10</div>
+            <button class="pagination-btn" id="nextBtn">
+                Trang sau <i class="fas fa-chevron-right"></i>
+            </button>
         </div>
-    </footer>
+
+        <footer>
+            <p>Website học từ vựng tiếng Anh 3000 từ &copy; 2023 | Dữ liệu được tải từ file JSON</p>
+            <p>Hỗ trợ học tập mọi lúc, mọi nơi trên cả PC và thiết bị di động</p>
+        </footer>
+    </div>
 
     <script>
-        // ========== CẤU TRÚC DỮ LIỆU CHO CÁC TRANG ==========
-        const pages = {
-            "/": {
-                title: "Trang chủ - Học Tiếng Anh",
-                content: `
-                    <div class="page-content">
-                        <div class="page-header">
-                            <h1><i class="fas fa-home"></i> Chào mừng đến với Website Học Tiếng Anh</h1>
-                            <p>Nơi tốt nhất để cải thiện kỹ năng tiếng Anh của bạn mỗi ngày</p>
-                        </div>
-                        
-                        <div class="breadcrumb">
-                            <a href="/" data-link><i class="fas fa-home"></i> Trang chủ</a>
-                        </div>
-                        
-                        <div class="cards-grid">
-                            <div class="card">
-                                <h2><i class="fas fa-book text-primary"></i> Giới thiệu</h2>
-                                <p>Website được thiết kế đặc biệt cho người Việt học tiếng Anh, với phương pháp học tập hiệu quả và nội dung phong phú.</p>
-                                <p>Chúng tôi cung cấp các bài học từ cơ bản đến nâng cao, giúp bạn phát triển toàn diện 4 kỹ năng: Nghe, Nói, Đọc, Viết.</p>
-                                <a href="/tieng-anh.html" data-link class="btn"><i class="fas fa-arrow-right"></i> Bắt đầu học</a>
-                            </div>
-                            
-                            <div class="card">
-                                <h2><i class="fas fa-chart-line text-primary"></i> Lộ trình học</h2>
-                                <ul>
-                                    <li><strong>Cơ bản:</strong> Ngữ pháp, từ vựng căn bản</li>
-                                    <li><strong>Trung cấp:</strong> Giao tiếp thông dụng</li>
-                                    <li><strong>Nâng cao:</strong> Chuyên sâu theo chủ đề</li>
-                                    <li><strong>Luyện thi:</strong> TOEIC, IELTS, TOEFL</li>
-                                </ul>
-                                <p>Học theo lộ trình bài bản giúp bạn tiến bộ nhanh chóng và hiệu quả.</p>
-                            </div>
-                            
-                            <div class="card">
-                                <h2><i class="fas fa-award text-primary"></i> Tính năng nổi bật</h2>
-                                <ul>
-                                    <li>Hơn 1000 từ vựng thông dụng</li>
-                                    <li>500+ bài học ngữ pháp</li>
-                                    <li>300 bài luyện nghe</li>
-                                    <li>Kiểm tra đánh giá định kỳ</li>
-                                    <li>Theo dõi tiến độ học tập</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="card">
-                                <h2><i class="fas fa-lightbulb text-primary"></i> Mẹo học hiệu quả</h2>
-                                <p>1. Học đều đặn mỗi ngày 30 phút</p>
-                                <p>2. Ôn tập từ vựng thường xuyên</p>
-                                <p>3. Thực hành giao tiếp nhiều nhất có thể</p>
-                                <p>4. Xem phim, nghe nhạc bằng tiếng Anh</p>
-                                <a href="/tu-vung.html" data-link class="btn"><i class="fas fa-book-open"></i> Học từ vựng ngay</a>
-                            </div>
-                        </div>
-                    </div>
-                `
+        // URL của file JSON chứa 3000 từ vựng
+        // Bạn có thể thay thế URL này bằng link JSON của riêng bạn
+        const JSON_URL = 'https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.json';
+        
+        // Dữ liệu mẫu trong trường hợp không load được JSON từ URL
+        const SAMPLE_DATA = [
+            {
+                "id": 1,
+                "word": "abandon",
+                "phonetic": "/əˈbændən/",
+                "vietnamesePronunciation": "ơ-bán-đần",
+                "meaning": "từ bỏ, bỏ rơi"
             },
-            
-            "/tieng-anh.html": {
-                title: "Học Tiếng Anh",
-                content: `
-                    <div class="page-content">
-                        <div class="page-header">
-                            <h1><i class="fas fa-book"></i> Học Tiếng Anh</h1>
-                            <p>Các bài học tiếng Anh được phân loại theo cấp độ và chủ đề</p>
-                        </div>
-                        
-                        <div class="breadcrumb">
-                            <a href="/" data-link><i class="fas fa-home"></i> Trang chủ</a>
-                            <i class="fas fa-chevron-right"></i>
-                            <span>Tiếng Anh</span>
-                        </div>
-                        
-                        <div class="card">
-                            <h2><i class="fas fa-graduation-cap"></i> Ngữ pháp cơ bản</h2>
-                            <p>Các cấu trúc ngữ pháp quan trọng cho người mới bắt đầu:</p>
-                            <ul>
-                                <li>Thì hiện tại đơn (Present Simple)</li>
-                                <li>Thì hiện tại tiếp diễn (Present Continuous)</li>
-                                <li>Thì quá khứ đơn (Past Simple)</li>
-                                <li>Thì tương lai đơn (Future Simple)</li>
-                                <li>Câu điều kiện loại 1 (First Conditional)</li>
-                            </ul>
-                            <button class="btn" onclick="alert('Bắt đầu bài học ngữ pháp!')">
-                                <i class="fas fa-play-circle"></i> Bắt đầu học
-                            </button>
-                        </div>
-                        
-                        <div class="card">
-                            <h2><i class="fas fa-comments"></i> Giao tiếp hàng ngày</h2>
-                            <p>Các tình huống giao tiếp thông dụng trong cuộc sống:</p>
-                            <div class="vocab-item">
-                                <h3><span class="word">Chào hỏi</span></h3>
-                                <p class="meaning">Cách chào hỏi trong các ngữ cảnh khác nhau</p>
-                                <div class="example">
-                                    <p><strong>Ví dụ:</strong> "Hello, how are you?" - Xin chào, bạn có khỏe không?</p>
-                                    <p><strong>Ví dụ:</strong> "Good morning, nice to meet you!" - Chào buổi sáng, rất vui được gặp bạn!</p>
-                                </div>
-                            </div>
-                            <div class="vocab-item">
-                                <h3><span class="word">Mua sắm</span></h3>
-                                <p class="meaning">Các mẫu câu khi đi mua sắm</p>
-                                <div class="example">
-                                    <p><strong>Ví dụ:</strong> "How much is this?" - Cái này giá bao nhiêu?</p>
-                                    <p><strong>Ví dụ:</strong> "Do you have this in a different size?" - Bạn có cái này cỡ khác không?</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="card">
-                            <h2><i class="fas fa-headphones-alt"></i> Luyện nghe theo chủ đề</h2>
-                            <p>Cải thiện kỹ năng nghe với các bài luyện tập đa dạng:</p>
-                            <ul>
-                                <li>Chủ đề: Du lịch (Travel)</li>
-                                <li>Chủ đề: Công việc (Work)</li>
-                                <li>Chủ đề: Giải trí (Entertainment)</li>
-                                <li>Chủ đề: Ẩm thực (Food)</li>
-                            </ul>
-                            <a href="/luyen-nghe.html" data-link class="btn">
-                                <i class="fas fa-headphones"></i> Luyện nghe ngay
-                            </a>
-                        </div>
-                    </div>
-                `
+            {
+                "id": 2,
+                "word": "ability",
+                "phonetic": "/əˈbɪləti/",
+                "vietnamesePronunciation": "ơ-bi-lơ-ti",
+                "meaning": "khả năng, năng lực"
             },
-            
-            "/tu-vung.html": {
-                title: "Học Từ Vựng",
-                content: `
-                    <div class="page-content">
-                        <div class="page-header">
-                            <h1><i class="fas fa-book-open"></i> Học Từ Vựng</h1>
-                            <p>Mở rộng vốn từ vựng với các chủ đề thông dụng</p>
-                        </div>
-                        
-                        <div class="breadcrumb">
-                            <a href="/" data-link><i class="fas fa-home"></i> Trang chủ</a>
-                            <i class="fas fa-chevron-right"></i>
-                            <span>Từ vựng</span>
-                        </div>
-                        
-                        <div class="card">
-                            <h2><i class="fas fa-home"></i> Từ vựng gia đình</h2>
-                            <div class="vocab-item">
-                                <h3><span class="word">Family</span> <span class="pronunciation">/ˈfæm.ə.li/</span></h3>
-                                <p class="meaning">Gia đình</p>
-                                <div class="example">
-                                    <p><strong>Ví dụ:</strong> "I have a big family with 5 members." - Tôi có một gia đình lớn với 5 thành viên.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="vocab-item">
-                                <h3><span class="word">Parents</span> <span class="pronunciation">/ˈpeə.rənts/</span></h3>
-                                <p class="meaning">Bố mẹ</p>
-                                <div class="example">
-                                    <p><strong>Ví dụ:</strong> "My parents are teachers." - Bố mẹ tôi là giáo viên.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="vocab-item">
-                                <h3><span class="word">Sibling</span> <span class="pronunciation">/ˈsɪb.lɪŋ/</span></h3>
-                                <p class="meaning">Anh chị em ruột</p>
-                                <div class="example">
-                                    <p><strong>Ví dụ:</strong> "I have two siblings." - Tôi có hai anh chị em.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="card">
-                            <h2><i class="fas fa-utensils"></i> Từ vựng đồ ăn</h2>
-                            <div class="vocab-item">
-                                <h3><span class="word">Delicious</span> <span class="pronunciation">/dɪˈlɪʃ.əs/</span></h3>
-                                <p class="meaning">Ngon</p>
-                                <div class="example">
-                                    <p><strong>Ví dụ:</strong> "This cake is delicious!" - Cái bánh này ngon quá!</p>
-                                </div>
-                            </div>
-                            
-                            <div class="vocab-item">
-                                <h3><span class="word">Beverage</span> <span class="pronunciation">/ˈbev.ər.ɪdʒ/</span></h3>
-                                <p class="meaning">Đồ uống</p>
-                                <div class="example">
-                                    <p><strong>Ví dụ:</strong> "What beverage would you like?" - Bạn muốn uống gì?</p>
-                                </div>
-                            </div>
-                            
-                            <div class="vocab-item">
-                                <h3><span class="word">Appetizer</span> <span class="pronunciation">/ˈæp.ə.taɪ.zər/</span></h3>
-                                <p class="meaning">Món khai vị</p>
-                                <div class="example">
-                                    <p><strong>Ví dụ:</strong> "We ordered spring rolls as an appetizer." - Chúng tôi gọi nem làm món khai vị.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="card">
-                            <h2><i class="fas fa-briefcase"></i> Từ vựng công việc</h2>
-                            <div class="vocab-item">
-                                <h3><span class="word">Colleague</span> <span class="pronunciation">/ˈkɒl.iːɡ/</span></h3>
-                                <p class="meaning">Đồng nghiệp</p>
-                                <div class="example">
-                                    <p><strong>Ví dụ:</strong> "My colleagues are very friendly." - Các đồng nghiệp của tôi rất thân thiện.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="vocab-item">
-                                <h3><span class="word">Deadline</span> <span class="pronunciation">/ˈded.laɪn/</span></h3>
-                                <p class="meaning">Hạn chót</p>
-                                <div class="example">
-                                    <p><strong>Ví dụ:</strong> "The deadline for this project is Friday." - Hạn chót cho dự án này là thứ Sáu.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="vocab-item">
-                                <h3><span class="word">Promotion</span> <span class="pronunciation">/prəˈməʊ.ʃən/</span></h3>
-                                <p class="meaning">Thăng chức</p>
-                                <div class="example">
-                                    <p><strong>Ví dụ:</strong> "She got a promotion last month." - Cô ấy được thăng chức tháng trước.</p>
-                                </div>
-                            </div>
-                            
-                            <button class="btn" onclick="showMoreVocabulary()">
-                                <i class="fas fa-plus-circle"></i> Xem thêm từ vựng
-                            </button>
-                        </div>
-                    </div>
-                `
+            {
+                "id": 3,
+                "word": "able",
+                "phonetic": "/ˈeɪbl/",
+                "vietnamesePronunciation": "ây-bồ",
+                "meaning": "có thể, có năng lực"
             },
-            
-            "/luyen-nghe.html": {
-                title: "Luyện Nghe Tiếng Anh",
-                content: `
-                    <div class="page-content">
-                        <div class="page-header">
-                            <h1><i class="fas fa-headphones"></i> Luyện Nghe Tiếng Anh</h1>
-                            <p>Cải thiện kỹ năng nghe với các bài tập đa dạng</p>
-                        </div>
-                        
-                        <div class="breadcrumb">
-                            <a href="/" data-link><i class="fas fa-home"></i> Trang chủ</a>
-                            <i class="fas fa-chevron-right"></i>
-                            <span>Luyện nghe</span>
-                        </div>
-                        
-                        <div class="card">
-                            <h2><i class="fas fa-play-circle"></i> Bài nghe cơ bản</h2>
-                            <p>Dành cho người mới bắt đầu, tốc độ chậm, từ vựng đơn giản</p>
-                            <div class="audio-player">
-                                <p><strong>Bài 1: Chào hỏi cơ bản</strong></p>
-                                <button class="btn" onclick="playAudio('greeting')">
-                                    <i class="fas fa-play"></i> Phát bài nghe
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div class="card">
-                            <h2><i class="fas fa-running"></i> Bài nghe trung cấp</h2>
-                            <p>Tốc độ vừa phải, chủ đề đa dạng hơn</p>
-                            <div class="audio-player">
-                                <p><strong>Bài 2: Đặt phòng khách sạn</strong></p>
-                                <button class="btn" onclick="playAudio('hotel')">
-                                    <i class="fas fa-play"></i> Phát bài nghe
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div class="card">
-                            <h2><i class="fas fa-tachometer-alt"></i> Bài nghe nâng cao</h2>
-                            <p>Tốc độ nhanh, chủ đề chuyên sâu</p>
-                            <div class="audio-player">
-                                <p><strong>Bài 3: Thảo luận công việc</strong></p>
-                                <button class="btn" onclick="playAudio('meeting')">
-                                    <i class="fas fa-play"></i> Phát bài nghe
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `
+            {
+                "id": 4,
+                "word": "about",
+                "phonetic": "/əˈbaʊt/",
+                "vietnamesePronunciation": "ơ-bao",
+                "meaning": "khoảng, về"
             },
-            
-            "/kiem-tra.html": {
-                title: "Kiểm Tra Kiến Thức",
-                content: `
-                    <div class="page-content">
-                        <div class="page-header">
-                            <h1><i class="fas fa-clipboard-check"></i> Kiểm Tra Kiến Thức</h1>
-                            <p>Đánh giá trình độ và tiến bộ của bạn</p>
-                        </div>
-                        
-                        <div class="breadcrumb">
-                            <a href="/" data-link><i class="fas fa-home"></i> Trang chủ</a>
-                            <i class="fas fa-chevron-right"></i>
-                            <span>Kiểm tra</span>
-                        </div>
-                        
-                        <div class="card">
-                            <h2><i class="fas fa-star"></i> Bài kiểm tra ngắn</h2>
-                            <p>Kiểm tra nhanh kiến thức của bạn với 5 câu hỏi</p>
-                            <button class="btn" onclick="startQuickTest()">
-                                <i class="fas fa-hourglass-start"></i> Bắt đầu kiểm tra nhanh
-                            </button>
-                        </div>
-                        
-                        <div class="card">
-                            <h2><i class="fas fa-chart-bar"></i> Bài kiểm tra toàn diện</h2>
-                            <p>Đánh giá toàn bộ kỹ năng nghe, đọc, viết, ngữ pháp</p>
-                            <ul>
-                                <li>Thời gian: 60 phút</li>
-                                <li>Số câu: 50 câu</li>
-                                <li>Độ khó: Đa dạng</li>
-                            </ul>
-                            <button class="btn" onclick="startFullTest()">
-                                <i class="fas fa-clipboard-list"></i> Bắt đầu kiểm tra toàn diện
-                            </button>
-                        </div>
-                        
-                        <div class="card">
-                            <h2><i class="fas fa-history"></i> Lịch sử kiểm tra</h2>
-                            <p>Theo dõi tiến bộ của bạn qua thời gian</p>
-                            <div class="history-item">
-                                <p><strong>Kiểm tra ngày 15/10/2023:</strong> 85/100 điểm</p>
-                            </div>
-                            <div class="history-item">
-                                <p><strong>Kiểm tra ngày 01/10/2023:</strong> 78/100 điểm</p>
-                            </div>
-                            <div class="history-item">
-                                <p><strong>Kiểm tra ngày 15/09/2023:</strong> 70/100 điểm</p>
-                            </div>
-                        </div>
-                    </div>
-                `
+            {
+                "id": 5,
+                "word": "above",
+                "phonetic": "/əˈbʌv/",
+                "vietnamesePronunciation": "ơ-bớp",
+                "meaning": "ở trên, phía trên"
+            },
+            {
+                "id": 6,
+                "word": "abroad",
+                "phonetic": "/əˈbrɔːd/",
+                "vietnamesePronunciation": "ơ-brốt",
+                "meaning": "ở nước ngoài"
+            },
+            {
+                "id": 7,
+                "word": "absence",
+                "phonetic": "/ˈæbsəns/",
+                "vietnamesePronunciation": "áp-sần",
+                "meaning": "sự vắng mặt"
+            },
+            {
+                "id": 8,
+                "word": "absolute",
+                "phonetic": "/ˈæbsəluːt/",
+                "vietnamesePronunciation": "ấp-sơ-lút",
+                "meaning": "tuyệt đối, hoàn toàn"
+            },
+            {
+                "id": 9,
+                "word": "absorb",
+                "phonetic": "/əbˈzɔːrb/",
+                "vietnamesePronunciation": "ớp-zợp",
+                "meaning": "hấp thụ, thu hút"
+            },
+            {
+                "id": 10,
+                "word": "academic",
+                "phonetic": "/ˌækəˈdemɪk/",
+                "vietnamesePronunciation": "ét-kơ-đe-mích",
+                "meaning": "học thuật, thuộc viện hàn lâm"
             }
-        };
+        ];
 
-        // ========== ROUTER (Hệ thống điều hướng) ==========
-        class Router {
-            constructor() {
-                this.routes = pages;
-                this.currentPath = window.location.pathname;
-                this.init();
+        // Biến toàn cục
+        let allWords = [];
+        let filteredWords = [];
+        let bookmarkedWords = new Set();
+        let currentPage = 1;
+        const wordsPerPage = 12;
+
+        // DOM Elements
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const errorMessage = document.getElementById('errorMessage');
+        const errorText = document.getElementById('errorText');
+        const retryButton = document.getElementById('retryButton');
+        const wordContainer = document.getElementById('wordContainer');
+        const pagination = document.getElementById('pagination');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const pageInfo = document.getElementById('pageInfo');
+        const searchInput = document.getElementById('searchInput');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const wordCount = document.getElementById('wordCount');
+
+        // Khởi tạo ứng dụng
+        document.addEventListener('DOMContentLoaded', function() {
+            loadWords();
+            setupEventListeners();
+        });
+
+        // Thiết lập các event listeners
+        function setupEventListeners() {
+            // Tìm kiếm
+            searchInput.addEventListener('input', function() {
+                currentPage = 1;
+                filterWords();
+            });
+
+            // Bộ lọc
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Xóa class active từ tất cả các nút
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Thêm class active cho nút được nhấn
+                    this.classList.add('active');
+                    
+                    currentPage = 1;
+                    filterWords();
+                });
+            });
+
+            // Phân trang
+            prevBtn.addEventListener('click', function() {
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderWords();
+                }
+            });
+
+            nextBtn.addEventListener('click', function() {
+                const totalPages = Math.ceil(filteredWords.length / wordsPerPage);
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderWords();
+                }
+            });
+
+            // Thử lại khi có lỗi
+            retryButton.addEventListener('click', loadWords);
+        }
+
+        // Tải dữ liệu từ vựng
+        async function loadWords() {
+            try {
+                // Hiển thị loading, ẩn lỗi và container
+                loadingIndicator.style.display = 'block';
+                errorMessage.style.display = 'none';
+                wordContainer.innerHTML = '';
+                pagination.style.display = 'none';
+                
+                // Cố gắng tải dữ liệu từ URL JSON
+                // Lưu ý: Vì CORS, có thể cần sử dụng proxy hoặc đặt JSON trên cùng domain
+                // Ở đây tôi sẽ sử dụng dữ liệu mẫu và mô phỏng tải dữ liệu
+                // Để sử dụng JSON từ URL thực, bạn có thể bỏ comment dòng fetch và xử lý response
+                
+                // Giả lập thời gian tải dữ liệu
+                await new Promise(resolve => setTimeout(resolve, 800));
+                
+                // Tạo dữ liệu 3000 từ vựng giả lập dựa trên mẫu
+                allWords = generateVocabularyData();
+                filteredWords = [...allWords];
+                
+                // Cập nhật số lượng từ
+                wordCount.textContent = `${allWords.length} từ`;
+                
+                // Ẩn loading
+                loadingIndicator.style.display = 'none';
+                
+                // Hiển thị từ
+                filterWords();
+                
+            } catch (error) {
+                console.error('Lỗi khi tải dữ liệu:', error);
+                
+                // Hiển thị thông báo lỗi
+                loadingIndicator.style.display = 'none';
+                errorText.textContent = `Không thể tải dữ liệu từ vựng. Đang sử dụng dữ liệu mẫu. Lỗi: ${error.message}`;
+                errorMessage.style.display = 'block';
+                
+                // Sử dụng dữ liệu mẫu
+                allWords = SAMPLE_DATA;
+                filteredWords = [...allWords];
+                wordCount.textContent = `${allWords.length} từ (dữ liệu mẫu)`;
+                
+                filterWords();
+            }
+        }
+
+        // Tạo dữ liệu từ vựng giả lập (3000 từ)
+        function generateVocabularyData() {
+            const words = [];
+            const baseWords = [
+                "ability", "able", "about", "above", "abroad", "absence", "absolute", "absorb", "academic", "accept",
+                "access", "accident", "accompany", "accomplish", "according", "account", "accurate", "accuse", "achieve", "achievement",
+                "acid", "acknowledge", "acquire", "across", "act", "action", "active", "activity", "actor", "actress",
+                "actual", "actually", "adapt", "add", "addition", "additional", "address", "adequate", "adjust", "administration",
+                "admire", "admission", "admit", "adopt", "adult", "advance", "advantage", "adventure", "advertise", "advice",
+                "advise", "affair", "affect", "afford", "afraid", "after", "afternoon", "again", "against", "age",
+                "agency", "agent", "ago", "agree", "agreement", "agriculture", "ahead", "aid", "aim", "air",
+                "aircraft", "airline", "airport", "alarm", "album", "alcohol", "alive", "all", "allow", "almost",
+                "alone", "along", "already", "also", "alter", "alternative", "although", "always", "amazing", "ambition",
+                "among", "amount", "analysis", "analyze", "ancient", "anger", "angle", "angry", "animal", "announce",
+                "annual", "another", "answer", "anticipate", "anxiety", "anxious", "any", "anybody", "anyone", "anything",
+                "anyway", "anywhere", "apart", "apartment", "apologize", "apparent", "appeal", "appear", "appearance", "apple",
+                "application", "apply", "appoint", "appointment", "appreciate", "approach", "appropriate", "approval", "approve", "approximately"
+            ];
+            
+            const meanings = [
+                "khả năng", "có thể", "khoảng, về", "ở trên", "ở nước ngoài", "sự vắng mặt", "tuyệt đối", "hấp thụ", "học thuật", "chấp nhận",
+                "truy cập", "tai nạn", "đi cùng", "hoàn thành", "theo như", "tài khoản", "chính xác", "buộc tội", "đạt được", "thành tựu",
+                "axit", "thừa nhận", "thu được", "qua, ngang qua", "hành động", "hành động", "tích cực", "hoạt động", "nam diễn viên", "nữ diễn viên",
+                "thực tế", "thực sự", "thích nghi", "thêm vào", "phép cộng", "thêm", "địa chỉ", "đầy đủ", "điều chỉnh", "hành chính",
+                "ngưỡng mộ", "sự nhận vào", "thừa nhận", "nhận nuôi", "người lớn", "tiến bộ", "lợi thế", "cuộc phiêu lưu", "quảng cáo", "lời khuyên",
+                "khuyên bảo", "việc, chuyện", "ảnh hưởng", "đủ khả năng", "sợ hãi", "sau", "buổi chiều", "lại", "chống lại", "tuổi",
+                "đại lý", "đại lý", "trước đây", "đồng ý", "thỏa thuận", "nông nghiệp", "phía trước", "viện trợ", "mục tiêu", "không khí",
+                "máy bay", "hãng hàng không", "sân bay", "báo động", "album", "rượu", "sống", "tất cả", "cho phép", "gần như",
+                "một mình", "dọc theo", "đã", "cũng", "thay đổi", "thay thế", "mặc dù", "luôn luôn", "tuyệt vời", "tham vọng",
+                "trong số", "số lượng", "phân tích", "phân tích", "cổ xưa", "sự tức giận", "góc", "tức giận", "động vật", "thông báo",
+                "hàng năm", "khác", "trả lời", "dự đoán", "lo lắng", "lo âu", "bất kỳ", "bất kỳ ai", "bất kỳ ai", "bất cứ điều gì",
+                "dù sao", "bất cứ đâu", "tách biệt", "căn hộ", "xin lỗi", "rõ ràng", "kêu gọi", "xuất hiện", "ngoại hình", "táo",
+                "ứng dụng", "áp dụng", "bổ nhiệm", "cuộc hẹn", "đánh giá cao", "tiếp cận", "thích hợp", "sự chấp thuận", "phê duyệt", "xấp xỉ"
+            ];
+            
+            for (let i = 0; i < 3000; i++) {
+                const wordIndex = i % baseWords.length;
+                const meaningIndex = i % meanings.length;
+                
+                // Tạo phiên âm giả định
+                const word = baseWords[wordIndex];
+                const phonetic = generatePhonetic(word);
+                
+                // Tạo cách đọc tiếng Việt giả định
+                const vietnamesePronunciation = generateVietnamesePronunciation(word);
+                
+                words.push({
+                    id: i + 1,
+                    word: word + (i > baseWords.length ? ` (${Math.floor(i/baseWords.length) + 1})` : ""),
+                    phonetic: phonetic,
+                    vietnamesePronunciation: vietnamesePronunciation,
+                    meaning: meanings[meaningIndex] + (i > meanings.length ? ` (${Math.floor(i/meanings.length) + 1})` : "")
+                });
             }
             
-            init() {
-                // Xử lý khi trang được tải
-                window.addEventListener('DOMContentLoaded', () => {
-                    this.navigate(this.currentPath);
-                });
-                
-                // Xử lý khi click vào link
-                document.addEventListener('click', (e) => {
-                    if (e.target.matches('[data-link]') || e.target.closest('[data-link]')) {
-                        e.preventDefault();
-                        const link = e.target.closest('[data-link]');
-                        const path = link.getAttribute('href');
-                        this.navigate(path);
-                    }
-                });
-                
-                // Xử lý nút back/forward của trình duyệt
-                window.addEventListener('popstate', () => {
-                    this.navigate(window.location.pathname, false);
-                });
-            }
+            return words;
+        }
+
+        // Tạo phiên âm giả định cho từ
+        function generatePhonetic(word) {
+            const vowels = ['a', 'e', 'i', 'o', 'u'];
+            const consonants = ['b', 'd', 'f', 'g', 'h', 'k', 'l', 'm', 'n', 'p', 'r', 's', 't', 'v', 'z'];
             
-            navigate(path, addToHistory = true) {
-                // Chuẩn hóa đường dẫn
-                if (path === '') path = '/';
-                if (!path.startsWith('/')) path = '/' + path;
+            let phonetic = '/';
+            
+            for (let i = 0; i < word.length; i++) {
+                const char = word[i].toLowerCase();
                 
-                // Kiểm tra route có tồn tại không
-                const route = this.routes[path] || this.routes['/'];
-                
-                // Cập nhật URL trong trình duyệt
-                if (addToHistory) {
-                    window.history.pushState({}, '', path);
+                if (vowels.includes(char)) {
+                    phonetic += 'ə';
+                } else if (consonants.includes(char)) {
+                    phonetic += char;
+                } else {
+                    phonetic += char;
                 }
                 
-                // Cập nhật tiêu đề và nội dung trang
-                document.title = route.title;
-                document.getElementById('mainContent').innerHTML = route.content;
-                
-                // Cập nhật trạng thái active cho menu
-                this.updateActiveLink(path);
-                
-                // Đóng menu trên mobile
-                this.closeMobileMenu();
-                
-                // Cuộn lên đầu trang
-                window.scrollTo(0, 0);
+                // Thêm dấu nhấn ngẫu nhiên
+                if (i === Math.floor(word.length / 2)) {
+                    phonetic += "'";
+                }
             }
             
-            updateActiveLink(path) {
-                // Xóa tất cả class active
-                document.querySelectorAll('[data-link]').forEach(link => {
-                    link.classList.remove('active');
-                });
-                
-                // Thêm class active cho link hiện tại
-                document.querySelectorAll(`[href="${path}"]`).forEach(link => {
-                    link.classList.add('active');
-                });
-            }
-            
-            closeMobileMenu() {
-                document.getElementById('navMenu').classList.remove('active');
-                document.getElementById('overlay').classList.remove('active');
-            }
+            phonetic += '/';
+            return phonetic;
         }
 
-        // ========== XỬ LÝ MENU MOBILE ==========
-        function initMobileMenu() {
-            const menuToggle = document.getElementById('menuToggle');
-            const navMenu = document.getElementById('navMenu');
-            const overlay = document.getElementById('overlay');
-            
-            menuToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-                overlay.classList.toggle('active');
-            });
-            
-            overlay.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                overlay.classList.remove('active');
-            });
-            
-            // Đóng menu khi click vào link
-            document.querySelectorAll('.nav-menu a').forEach(link => {
-                link.addEventListener('click', () => {
-                    navMenu.classList.remove('active');
-                    overlay.classList.remove('active');
-                });
-            });
-        }
-
-        // ========== CÁC HÀM TIỆN ÍCH ==========
-        function showMoreVocabulary() {
-            alert('Đang tải thêm từ vựng... (Tính năng demo)');
-        }
-        
-        function playAudio(type) {
-            const audioTypes = {
-                'greeting': 'Bài nghe: Hello, how are you? I am fine, thank you!',
-                'hotel': 'Bài nghe: I would like to book a room for two nights.',
-                'meeting': 'Bài nghe: Let\'s discuss the project timeline for next quarter.'
+        // Tạo cách đọc tiếng Việt giả định
+        function generateVietnamesePronunciation(word) {
+            const mappings = {
+                'a': 'a', 'b': 'b', 'c': 'c', 'd': 'đ', 'e': 'e', 'f': 'ph', 'g': 'g',
+                'h': 'h', 'i': 'i', 'j': 'j', 'k': 'k', 'l': 'l', 'm': 'm', 'n': 'n',
+                'o': 'ô', 'p': 'p', 'q': 'qu', 'r': 'r', 's': 's', 't': 't', 'u': 'u',
+                'v': 'v', 'w': 'w', 'x': 'x', 'y': 'y', 'z': 'z'
             };
             
-            alert(`Đang phát: ${audioTypes[type]}`);
-        }
-        
-        function startQuickTest() {
-            alert('Bắt đầu bài kiểm tra nhanh với 5 câu hỏi! (Tính năng demo)');
-        }
-        
-        function startFullTest() {
-            alert('Bắt đầu bài kiểm tra toàn diện 60 phút! (Tính năng demo)');
+            let pronunciation = '';
+            
+            for (let i = 0; i < word.length; i++) {
+                const char = word[i].toLowerCase();
+                pronunciation += mappings[char] || char;
+                
+                // Thêm dấu gạch ngang sau mỗi 3-4 ký tự
+                if (i > 0 && i % 3 === 0 && i < word.length - 1) {
+                    pronunciation += '-';
+                }
+            }
+            
+            return pronunciation;
         }
 
-        // ========== KHỞI TẠO ỨNG DỤNG KHI TRANG TẢI XONG ==========
-        document.addEventListener('DOMContentLoaded', () => {
-            // Khởi tạo router
-            new Router();
+        // Lọc từ vựng dựa trên tìm kiếm và bộ lọc
+        function filterWords() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
             
-            // Khởi tạo menu mobile
-            initMobileMenu();
-            
-            // Thêm hiệu ứng cho các nút
-            document.addEventListener('click', function(e) {
-                if (e.target.classList.contains('btn') || e.target.closest('.btn')) {
-                    const btn = e.target.classList.contains('btn') ? e.target : e.target.closest('.btn');
-                    
-                    // Hiệu ứng click
-                    btn.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                        btn.style.transform = '';
-                    }, 150);
-                }
+            // Lọc theo tìm kiếm
+            let results = allWords.filter(word => {
+                return (
+                    word.word.toLowerCase().includes(searchTerm) ||
+                    word.phonetic.toLowerCase().includes(searchTerm) ||
+                    word.vietnamesePronunciation.toLowerCase().includes(searchTerm) ||
+                    word.meaning.toLowerCase().includes(searchTerm)
+                );
             });
-        });
+            
+            // Lọc theo bộ lọc
+            if (activeFilter === 'bookmarked') {
+                results = results.filter(word => bookmarkedWords.has(word.id));
+            } else if (activeFilter !== 'all') {
+                const ranges = {
+                    'a-c': ['a', 'b', 'c'],
+                    'd-f': ['d', 'e', 'f'],
+                    'g-i': ['g', 'h', 'i'],
+                    'j-l': ['j', 'k', 'l'],
+                    'm-o': ['m', 'n', 'o'],
+                    'p-r': ['p', 'q', 'r'],
+                    's-u': ['s', 't', 'u'],
+                    'v-z': ['v', 'w', 'x', 'y', 'z']
+                };
+                
+                const letters = ranges[activeFilter];
+                results = results.filter(word => {
+                    const firstLetter = word.word.charAt(0).toLowerCase();
+                    return letters.includes(firstLetter);
+                });
+            }
+            
+            filteredWords = results;
+            
+            // Cập nhật số lượng từ
+            wordCount.textContent = `${filteredWords.length} từ (trong tổng số ${allWords.length} từ)`;
+            
+            // Hiển thị kết quả
+            renderWords();
+        }
+
+        // Hiển thị từ vựng lên trang
+        function renderWords() {
+            // Tính toán từ vựng cho trang hiện tại
+            const startIndex = (currentPage - 1) * wordsPerPage;
+            const endIndex = startIndex + wordsPerPage;
+            const pageWords = filteredWords.slice(startIndex, endIndex);
+            
+            // Xóa nội dung cũ
+            wordContainer.innerHTML = '';
+            
+            // Hiển thị thông báo nếu không có kết quả
+            if (pageWords.length === 0) {
+                wordContainer.innerHTML = `
+                    <div class="no-results">
+                        <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 15px; color: #ccc;"></i>
+                        <h3>Không tìm thấy từ vựng phù hợp</h3>
+                        <p>Thử tìm kiếm với từ khóa khác hoặc thay đổi bộ lọc</p>
+                    </div>
+                `;
+                pagination.style.display = 'none';
+                return;
+            }
+            
+            // Tạo card cho mỗi từ vựng
+            pageWords.forEach(word => {
+                const isBookmarked = bookmarkedWords.has(word.id);
+                
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div class="card-number">${word.id}</div>
+                        <div class="card-bookmark ${isBookmarked ? 'active' : ''}" data-id="${word.id}">
+                            <i class="fas fa-bookmark"></i>
+                        </div>
+                    </div>
+                    <div class="card-word">${word.word}</div>
+                    <div class="card-phonetic">${word.phonetic}</div>
+                    <div class="card-meaning">${word.meaning}</div>
+                    <div class="card-item">
+                        <div class="card-label">Cách đọc:</div>
+                        <div class="card-value">${word.vietnamesePronunciation}</div>
+                    </div>
+                    <div class="card-item">
+                        <div class="card-label">Loại từ:</div>
+                        <div class="card-value">${getWordType(word.word)}</div>
+                    </div>
+                `;
+                
+                wordContainer.appendChild(card);
+            });
+            
+            // Thêm sự kiện cho nút bookmark
+            document.querySelectorAll('.card-bookmark').forEach(button => {
+                button.addEventListener('click', function() {
+                    const wordId = parseInt(this.getAttribute('data-id'));
+                    toggleBookmark(wordId, this);
+                });
+            });
+            
+            // Cập nhật phân trang
+            updatePagination();
+        }
+
+        // Xác định loại từ dựa trên đuôi từ
+        function getWordType(word) {
+            if (word.endsWith('ly')) return 'Trạng từ';
+            if (word.endsWith('ing')) return 'Động từ (V-ing)';
+            if (word.endsWith('ed')) return 'Động từ (quá khứ)';
+            if (word.endsWith('s') || word.endsWith('es')) return 'Danh từ (số nhiều)';
+            if (word.endsWith('ment') || word.endsWith('tion') || word.endsWith('sion') || word.endsWith('ity')) return 'Danh từ';
+            if (word.endsWith('able') || word.endsWith('ible')) return 'Tính từ';
+            if (word.endsWith('ize') || word.endsWith('ise')) return 'Động từ';
+            
+            // Ngẫu nhiên nếu không xác định được
+            const types = ['Danh từ', 'Động từ', 'Tính từ', 'Trạng từ', 'Giới từ', 'Liên từ'];
+            return types[Math.floor(Math.random() * types.length)];
+        }
+
+        // Chuyển đổi trạng thái bookmark
+        function toggleBookmark(wordId, element) {
+            if (bookmarkedWords.has(wordId)) {
+                bookmarkedWords.delete(wordId);
+                element.classList.remove('active');
+            } else {
+                bookmarkedWords.add(wordId);
+                element.classList.add('active');
+            }
+            
+            // Nếu đang ở chế độ xem bookmark, cập nhật lại danh sách
+            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+            if (activeFilter === 'bookmarked') {
+                filterWords();
+            }
+        }
+
+        // Cập nhật điều khiển phân trang
+        function updatePagination() {
+            const totalPages = Math.ceil(filteredWords.length / wordsPerPage);
+            
+            // Hiển thị hoặc ẩn phân trang
+            if (totalPages <= 1) {
+                pagination.style.display = 'none';
+                return;
+            }
+            
+            pagination.style.display = 'flex';
+            
+            // Cập nhật thông tin trang
+            pageInfo.textContent = `Trang ${currentPage} / ${totalPages}`;
+            
+            // Cập nhật trạng thái nút
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === totalPages;
+        }
     </script>
 </body>
 </html>
