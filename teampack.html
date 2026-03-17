@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pack/Unpack Tool - SDCard</title>
+    <style>
+        /* Giữ nguyên CSS như cũ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #ecf0f1;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .col {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .card h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card h2 i {
+            font-size: 1.2em;
+        }
+
+        .path-info {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498db;
+        }
+
+        .path-info label {
+            font-weight: 600;
+            color: #2c3e50;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .path-info .path {
+            background: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-family: monospace;
+            color: #e74c3c;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #34495e;
+            font-weight: 500;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            border: 2px dashed #bdc3c7;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            background: #f8f9fa;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .file-input-wrapper:hover {
+            border-color: #3498db;
+            background: #edf2f7;
+        }
+
+        .file-input-wrapper input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .file-input-wrapper i {
+            font-size: 40px;
+            color: #7f8c8d;
+            margin-bottom: 10px;
+        }
+
+        .file-input-wrapper p {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .selected-files {
+            margin-top: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .selected-files h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .file-list {
+            list-style: none;
+        }
+
+        .file-list li {
+            padding: 8px 10px;
+            background: white;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-left: 3px solid #3498db;
+        }
+
+        .file-list li:before {
+            content: "📄";
+            margin-right: 5px;
+        }
+
+        .file-size {
+            margin-left: auto;
+            color: #7f8c8d;
+            font-size: 11px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        button:hover:not(:disabled) {
+            background: linear-gradient(135deg, #2980b9 0%, #2c3e50 100%);
+            transform: scale(1.02);
+        }
+
+        button:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .result.success {
+            display: block;
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .result.error {
+            display: block;
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .result.info {
+            display: block;
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .download-section {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #27ae60;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            background: #229954;
+            transform: scale(1.05);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #ecf0f1;
+            opacity: 0.8;
+            font-size: 0.9em;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .badge {
+            background: #3498db;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            margin-left: 10px;
+        }
+    </style>
+    <!-- Thêm JSZip từ CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>📦 SDCard Pack/Unpack Tool</h1>
+        <div class="subtitle">
+            <span>🔧 Dựa trên mã nguồn Java ME gốc</span>
+            <span class="badge">sdcard/pack</span>
+            <span class="badge">sdcard/unpack</span>
+        </div>
+        
+        <div class="row">
+            <!-- Unpack Section -->
+            <div class="col">
+                <div class="card">
+                    <h2>
+                        <i>🔓</i> Giải nén (Unpack)
+                    </h2>
+                    
+                    <div class="path-info">
+                        <label>📂 Đường dẫn đầu ra:</label>
+                        <div class="path">sdcard/unpack/</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>📁 Chọn file pack cần giải nén:</label>
+                        <div class="file-input-wrapper" id="unpackDropZone">
+                            <i>📦</i>
+                            <p>Kéo thả file vào đây hoặc click để chọn</p>
+                            <input type="file" id="unpackFile" accept="*/*">
+                        </div>
+                    </div>
+                    
+                    <div id="unpackSelected" class="selected-files" style="display: none;">
+                        <h4>File đã chọn:</h4>
+                        <ul class="file-list" id="unpackFileList"></ul>
+                    </div>
+                    
+                    <button id="unpackBtn" disabled>
+                        <span>🔓</span>
+                        <span>Giải nén</span>
+                    </button>
+                    
+                    <div id="unpackResult" class="result"></div>
+                    
+                    <div id="unpackDownload" class="download-section" style="display: none;">
+                        <button class="download-btn" id="downloadUnpackedBtn">
+                            ⬇️ Tải file đã giải nén
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pack Section -->
+            <div class="col">
+                <div class="card">
+                    <h2>
+                        <i>📦</i> Đóng gói (Pack)
+                    </h2>
+                    
+                    <div class="path-info">
+                        <label>📂 Đường dẫn đầu ra:</label>
+                        <div class="path">sdcard/pack/</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>📁 Chọn nhiều file để đóng gói:</label>
+                        <div class="file-input-wrapper" id="packDropZone">
+                            <i>📁</i>
+                            <p>Kéo thả nhiều file vào đây hoặc click để chọn</p>
+                            <input type="file" id="packFiles" multiple accept="*/*">
+                        </div>
+                    </div>
+                    
+                    <div id="packSelected" class="selected-files" style="display: none;">
+                        <h4>Danh sách file (<span id="fileCount">0</span>):</h4>
+                        <ul class="file-list" id="packFileList"></ul>
+                    </div>
+                    
+                    <button id="packBtn" disabled>
+                        <span>📦</span>
+                        <span>Đóng gói</span>
+                    </button>
+                    
+                    <div id="packResult" class="result"></div>
+                    
+                    <div id="packDownload" class="download-section" style="display: none;">
+                        <button class="download-btn" id="downloadPackedBtn">
+                            ⬇️ Tải file pack (pack)
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>⚠️ Files được xử lý hoàn toàn trên trình duyệt, không lưu trên server</p>
+            <p>🔐 Sử dụng mã khóa giống Java ME gốc: "NguyenVanMinh"</p>
+        </div>
+    </div>
+
+    <script>
+        // Constants
+        const KEY = [78, 103, 117, 121, 101, 110, 86, 97, 110, 77, 105, 110, 104]; // "NguyenVanMinh"
+        const KEY_LEN = KEY.length;
+        
+        // DOM Elements
+        const unpackInput = document.getElementById('unpackFile');
+        const packInput = document.getElementById('packFiles');
+        const unpackBtn = document.getElementById('unpackBtn');
+        const packBtn = document.getElementById('packBtn');
+        const unpackResult = document.getElementById('unpackResult');
+        const packResult = document.getElementById('packResult');
+        const unpackSelected = document.getElementById('unpackSelected');
+        const packSelected = document.getElementById('packSelected');
+        const unpackFileList = document.getElementById('unpackFileList');
+        const packFileList = document.getElementById('packFileList');
+        const fileCount = document.getElementById('fileCount');
+        const unpackDownload = document.getElementById('unpackDownload');
+        const packDownload = document.getElementById('packDownload');
+        
+        let currentPackedData = null;
+        let currentUnpackedFiles = [];
+
+        // XOR decode/encode function
+        function xorTransform(data) {
+            const result = new Uint8Array(data.length);
+            for (let i = 0; i < data.length; i++) {
+                result[i] = data[i] ^ KEY[i % KEY_LEN];
+            }
+            return result;
+        }
+
+        // Helper: concat Uint8Arrays
+        function concatUint8Arrays(arr1, arr2) {
+            const result = new Uint8Array(arr1.length + arr2.length);
+            result.set(arr1, 0);
+            result.set(arr2, arr1.length);
+            return result;
+        }
+
+        // Unpack function
+        async function unpackFile(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    try {
+                        const data = new Uint8Array(e.target.result);
+                        let offset = 0;
+                        
+                        // Đọc số lượng files
+                        const numFiles = data[offset];
+                        offset++;
+                        
+                        const files = [];
+                        const fileSizes = [];
+                        const fileNames = [];
+                        let totalSize = 0;
+                        
+                        // Đọc header
+                        for (let i = 0; i < numFiles; i++) {
+                            const nameLen = data[offset];
+                            offset++;
+                            
+                            // Đọc tên file (đã mã hóa)
+                            const nameBytes = data.slice(offset, offset + nameLen);
+                            offset += nameLen;
+                            
+                            // Giải mã tên file
+                            const decodedNameBytes = xorTransform(nameBytes);
+                            const fileName = new TextDecoder().decode(decodedNameBytes);
+                            fileNames.push(fileName);
+                            
+                            // Đọc kích thước
+                            const size = (data[offset] << 8) | data[offset + 1];
+                            offset += 2;
+                            
+                            fileSizes.push(size);
+                            totalSize += size;
+                        }
+                        
+                        // Đọc nội dung (đã mã hóa)
+                        const content = data.slice(offset, offset + totalSize);
+                        
+                        // Giải mã nội dung
+                        const decodedContent = xorTransform(content);
+                        
+                        // Tách các files
+                        let pos = 0;
+                        for (let i = 0; i < numFiles; i++) {
+                            const fileData = decodedContent.slice(pos, pos + fileSizes[i]);
+                            files.push({
+                                name: fileNames[i],
+                                data: fileData
+                            });
+                            pos += fileSizes[i];
+                        }
+                        
+                        resolve(files);
+                    } catch (error) {
+                        reject(error);
+                    }
+                };
+                
+                reader.onerror = () => reject(reader.error);
+                reader.readAsArrayBuffer(file);
+            });
+        }
+
+        // Pack function
+        async function packFiles(files) {
+            return new Promise((resolve, reject) => {
+                // Header: số lượng files
+                let header = new Uint8Array([files.length]);
+                
+                // Mảng chứa nội dung
+                let contents = [];
+                let totalContentSize = 0;
+                let processedCount = 0;
+                
+                // Xử lý từng file
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        const fileData = new Uint8Array(e.target.result);
+                        
+                        // Mã hóa tên file
+                        const nameBytes = new TextEncoder().encode(file.name);
+                        const encodedName = xorTransform(nameBytes);
+                        
+                        // Thêm vào header: độ dài tên
+                        const nameLen = new Uint8Array([nameBytes.length]);
+                        header = concatUint8Arrays(header, nameLen);
+                        
+                        // Thêm tên file đã mã hóa
+                        header = concatUint8Arrays(header, encodedName);
+                        
+                        // Thêm kích thước file
+                        const sizeBytes = new Uint8Array([
+                            (fileData.length >> 8) & 0xFF,
+                            fileData.length & 0xFF
+                        ]);
+                        header = concatUint8Arrays(header, sizeBytes);
+                        
+                        // Thêm nội dung
+                        contents.push(fileData);
+                        totalContentSize += fileData.length;
+                        
+                        processedCount++;
+                        
+                        // Nếu đã xử lý xong tất cả files
+                        if (processedCount === files.length) {
+                            // Ghép nội dung
+                            let allContent = new Uint8Array(totalContentSize);
+                            let pos = 0;
+                            for (let j = 0; j < contents.length; j++) {
+                                allContent.set(contents[j], pos);
+                                pos += contents[j].length;
+                            }
+                            
+                            // Mã hóa nội dung
+                            const encodedContent = xorTransform(allContent);
+                            
+                            // Ghép header và content
+                            const result = concatUint8Arrays(header, encodedContent);
+                            resolve(result);
+                        }
+                    };
+                    
+                    reader.onerror = () => reject(reader.error);
+                    reader.readAsArrayBuffer(file);
+                }
+            });
+        }
+
+        // Format bytes
+        function formatBytes(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // Download file
+        function downloadFile(data, filename) {
+            const blob = new Blob([data], { type: 'application/octet-stream' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+ 
